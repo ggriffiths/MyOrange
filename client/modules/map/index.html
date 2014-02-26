@@ -4,11 +4,13 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>My Orange</title>
+    <!-- This is the map image and the panel to the right for user input -->
     <style>
       html, body, #map-canvas {
         height: 100%;
         margin: 0px;
-        padding: 0px
+        padding: 0px;
+        padding-left: 120px;
       }
       #panel {
         position: absolute;
@@ -21,12 +23,18 @@
         border: 1px solid #999;
       }
     </style>
+    <!-- Google API call -->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <script>
+
+
+<!-- Make direction variables to use for the path -->
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 
+
+<!-- Initialize the map with the quad as the center -->
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   var syracuse = new google.maps.LatLng(43.037633, -76.134011);
@@ -39,9 +47,12 @@ function initialize() {
   directionsDisplay.setMap(map);
 }
 
+<!-- Calculate the shortest route from starting point to end point -->
 function calcRoute() {
   var start = document.getElementById('start').value;
   var end = document.getElementById('end').value;
+
+  <!-- Waypoints are added in incase later used for multiple points on map -->
   var waypts = [];
   var checkboxArray = document.getElementById('waypoints');
   for (var i = 0; i < checkboxArray.length; i++) {
@@ -51,6 +62,8 @@ function calcRoute() {
           stopover:true});
     }
   }
+
+  <!--Make the request for the google direction api to make the path -->
   var request = {
       origin: start,
       destination: end,
@@ -59,6 +72,7 @@ function calcRoute() {
       travelMode: google.maps.TravelMode.WALKING
   };
 
+<!-- Send the request to the Google direction api -->
     directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
@@ -68,12 +82,14 @@ function calcRoute() {
   });
 }
 
+<!-- Load the map -->
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
   </head>
   <body>
     
+    <!-- Create the side panel with all the buildings on campus as starting and ending points -->
     <div id="control_panel" style="float:right;width:30%;text-align:left;padding-top:20px">
     <div style="margin:20px;border-width:2px;">
     <b>Start:</b>
@@ -120,8 +136,11 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <option value="43.042224, -76.133897">Whitman School of Busniness</option>
       <option value="43.034770, -76.129981">Women's Building</option>
     </select>
+
+    <!-- Another waypoints placeholder -->
     <div id="waypoints"></div>
     <br>
+    
     <b>End:</b>
     <select id="end">
       <option value="43.036664, -76.134836">Archbold Gym</option>
