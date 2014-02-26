@@ -3,9 +3,12 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
-  }])
-  .controller('MyCtrl2', [function() {
-
+  controller('NavCtrl', [function() {
+  	if(window.location.href=="http://localhost:8000/client/main.html#/map"){
+		document.getElementById("map-canvas").style.visibility="visible";
+  	}
+  	else
+  	{
+		document.getElementById("map-canvas").style.visibility="hidden";
+  	}
   }]);

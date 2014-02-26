@@ -7,7 +7,24 @@
   <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-theme.css">
   <link rel="stylesheet" type="text/css" href="lib/misc/simple-sidebar.css">
   <link rel="shortcut icon" href="favicon.ico">
-
+  <style>
+    html, body, #map-canvas {
+      height: 100%;
+      margin: 0px;
+      padding: 0px
+    }
+    #panel {
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      margin-left: -180px;
+      z-index: 5;
+      background-color: #fff;
+      padding: 5px;
+      border: 1px solid #999;
+    }
+    .angular-google-map-container { height: 400px; }
+  </style>
 </head>
   <body ng-app="myOrange">
 
@@ -19,18 +36,28 @@
           <li><a href="#/communicator">Communicator</a></li>
           <li><a href="#/degree">Degree Plan</a></li>
         </ul>
+        
     </div>
 
     <div ng-view>
 
     </div>
 
+    <div id="map-canvas" style="float:left;width:70%;height:100%;"></div>
+
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
+    <script src="lib/angular/angular-google-maps.js"></script>
+    <script src="lib/misc/underscore.js"></script>
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
     <script src="app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
+    <script src="modules/map/app.js"></script>
+
+
+
   </body>
 </html>

@@ -73,7 +73,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
   <body>
-    <div id="map-canvas" style="float:left;width:70%;height:100%;"></div>
+    
     <div id="control_panel" style="float:right;width:30%;text-align:left;padding-top:20px">
     <div style="margin:20px;border-width:2px;">
     <b>Start:</b>
@@ -121,6 +121,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <option value="43.034770, -76.129981">Women's Building</option>
     </select>
     <div id="waypoints"></div>
+    <br>
     <b>End:</b>
     <select id="end">
       <option value="43.036664, -76.134836">Archbold Gym</option>
@@ -166,7 +167,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <option value="43.034770, -76.129981">Women's Building</option>
     </select>
     <br>
-      <input type="submit" onclick="calcRoute();">
+      <br>
+      <input type="submit" onclick="calcRoute();" class="btn btn-primary btn-lg">
     </div>
     <div id="directions_panel" style="margin:20px;background-color:#FFEE77;"></div>
     </div>

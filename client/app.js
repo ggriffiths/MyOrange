@@ -1,5 +1,6 @@
 'use strict';
 
+angular.module('myApp', ['google-maps']);
 
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
@@ -10,9 +11,9 @@ angular.module('myApp', [
   'myApp.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/schedule', {templateUrl: 'modules/schedule/schedule.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/map', {templateUrl: 'modules/map/map.html', controller: 'MyCtrl2'});
-  $routeProvider.when('/communicator', {templateUrl: 'modules/communicator/communicator.html', controller: 'MyCtrl2'});
-  $routeProvider.when('/degree', {templateUrl: 'modules/degree/degree.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider.when('/schedule', {templateUrl: 'modules/schedule/index.html', controller: 'NavCtrl'});
+  $routeProvider.when('/map', {templateUrl: 'modules/map/index.html', controller: 'NavCtrl'});
+  $routeProvider.when('/communicator', {templateUrl: 'modules/communicator/index.html', controller: 'NavCtrl'});
+  $routeProvider.when('/degree', {templateUrl: 'modules/degree/index.html', controller: 'NavCtrl'});
+  $routeProvider.otherwise({redirectTo: '/schedule'});
 }]);
