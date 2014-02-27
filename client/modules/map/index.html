@@ -10,7 +10,8 @@
         height: 100%;
         margin: 0px;
         padding: 0px;
-        padding-left: 120px;
+        padding-left: 110px;
+        padding-top: 25px;
       }
       #panel {
         position: absolute;
@@ -21,6 +22,13 @@
         background-color: #fff;
         padding: 5px;
         border: 1px solid #999;
+      }
+      #toolbar{
+        background-color:rgba(255,255,255,0.85);
+        margin:20px;
+        border-width:2px;
+        padding:10px;
+
       }
     </style>
     <!-- Google API call -->
@@ -91,7 +99,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     
     <!-- Create the side panel with all the buildings on campus as starting and ending points -->
     <div id="control_panel" style="float:right;width:30%;text-align:left;padding-top:20px">
-    <div style="margin:20px;border-width:2px;">
+    <div id="toolbar">
     <b>Start:</b>
     <select id="start">
 <option value="43.036664, -76.134836">Archbold Gym</option>
