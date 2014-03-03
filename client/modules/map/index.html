@@ -36,13 +36,13 @@
     <script>
 
 
-<!-- Make direction variables to use for the path -->
+//Make direction variables to use for the path
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 
 
-<!-- Initialize the map with the quad as the center -->
+//Initialize the map with the quad as the center
 function initialize() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   var syracuse = new google.maps.LatLng(43.037633, -76.134011);
@@ -55,12 +55,12 @@ function initialize() {
   directionsDisplay.setMap(map);
 }
 
-<!-- Calculate the shortest route from starting point to end point -->
+//Calculate the shortest route from starting point to end point
 function calcRoute() {
   var start = document.getElementById('start').value;
   var end = document.getElementById('end').value;
 
-  <!-- Waypoints are added in incase later used for multiple points on map -->
+  //Waypoints are added in incase later used for multiple points on map
   var waypts = [];
   var checkboxArray = document.getElementById('waypoints');
   for (var i = 0; i < checkboxArray.length; i++) {
@@ -71,7 +71,7 @@ function calcRoute() {
     }
   }
 
-  <!--Make the request for the google direction api to make the path -->
+  //Make the request for the google direction api to make the path
   var request = {
       origin: start,
       destination: end,
@@ -80,7 +80,7 @@ function calcRoute() {
       travelMode: google.maps.TravelMode.WALKING
   };
 
-<!-- Send the request to the Google direction api -->
+//Send the request to the Google direction api
     directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
@@ -90,7 +90,7 @@ function calcRoute() {
   });
 }
 
-<!-- Load the map -->
+//Load the map
 google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
@@ -104,7 +104,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <select id="start">
 <option value="43.036664, -76.134836">Archbold Gym</option>
       <option value="43.036790, -76.132390">Art Building</option>
-      <option value="43.040895, -76.135195">Admissions Building (Crouse-Hinds)</option>
+      <option value="43.040197, -76.137052">Admissions Building (Crouse-Hinds)</option>
       <option value="43.038153, -76.140281">BBB Hall</option>
       <option value="43.039730, -76.132583">Bird Library</option>
       <option value="43.041107, -76.129026">Booth Hall</option>
@@ -153,7 +153,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <select id="end">
       <option value="43.036664, -76.134836">Archbold Gym</option>
       <option value="43.036790, -76.132390">Art Building</option>
-      <option value="43.040895, -76.135195">Admissions Building (Crouse-Hinds)</option>
+      <option value="43.040197, -76.137052">Admissions Building (Crouse-Hinds)</option>
       <option value="43.038153, -76.140281">BBB Hall</option>
       <option value="43.039730, -76.132583">Bird Library</option>
       <option value="43.041107, -76.129026">Booth Hall</option>
