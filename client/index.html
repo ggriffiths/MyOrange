@@ -18,83 +18,92 @@
     <div style="text-align:center;margin: 0 auto;background-color:rgba(0,0,0,0) ;padding:25px">
       
       <img src='img/mo_logo.png'><br>
-      <a href="main.html"><button type="button" class="btn btn-default btn-lg">Login</button></a>
-      <a href="main.html"><button type="button" class="btn btn-success btn-lg">Register</button></a>
+      <a href="main.html"><a href="#myLoginModal" role="button" class="ruleBtn btn-lg btn-primary" data-toggle="modal">Login</a></a>
+      <a href="main.html"><a href="#myRegisterModal" role="button" class="ruleBtn btn-lg btn-success" data-toggle="modal">Register</a></a>
+
       </div>
     </div>
-
-              <form role="form" id="cellularForm">
-                <b>Image Viewer:</b>
-                 <div class="form-group">
-                   <input class="form-control" id="ruleNumInput" type="number" min="0" max="255" placeholder="Enter rule number: [0-255]">
-                 </div>
-                 <div class="checkbox">
-                   <label>
-                     <input type="checkbox" id = "randomInput"> Random First Row
-                   </label>
-                 </div>
-                  <a href="#myModal" role="button" class="ruleBtn btn btn-primary" data-toggle="modal">View Image</a>
-
-                  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Cellular Automaton Timespace Viewer</h3>
+      <form role="form" id="loginForm">
+          <div id="myLoginModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">MyOrange Login</h3>
+                    <form class="form" role="form">
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
                     </div>
-                    <div class="modal-body">
-                      <img id='ruleImgId'>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputPassword2">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
                     </div>
-                    <div class="modal-footer">
-                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Remember me
+                      </label>
                     </div>
-                  </div>
-                  </div>
-                  </div>
-              </form>
-
-<form class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Remember me
-        </label>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
-    </div>
-  </div>
-</form>
-
+                  </form>
+                </div>
+                <div class="modal-body">
+                  <img id='ruleImgId'>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Login</button>
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div id="myRegisterModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">MyOrange Register</h3>
+                    <form class="form" role="form">
+                    <div class="form-group">
+                      <label class="sr-only" for="displayName">Display Name</label>
+                      <input type="email" class="form-control" id="displayName" placeholder="Display Name">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputPassword2">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputPassword3">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Confirm Password">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-body">
+                  <img id='ruleImgId'>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Register</button>
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </form>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
-    <script src="lib/bootstrap/js/bootstrap.js"></script>
-    <script src="app.js"></script>
+    
+    <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
-    <script src="lib/angular/angular-dragdrop.min.js"></script>
-    <script src="modules/degree/app.js"></script>
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.js"></script>
   </body>
 
 </html>
