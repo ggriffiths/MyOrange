@@ -9,11 +9,10 @@ angular.module('myApp', [
   'myApp.services',
   'myApp.directives',
   'myApp.controllers'
-]).
-config(['$routeProvider', function($routeProvider) {
+]).config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/schedule', {templateUrl: 'modules/schedule/index.html', controller: 'NavCtrl'});
   $routeProvider.when('/map', {templateUrl: 'modules/map/index.html', controller: 'NavCtrl'});
   $routeProvider.when('/communicator', {templateUrl: 'modules/communicator/index.html', controller: 'NavCtrl'});
-  $routeProvider.when('/degree', {templateUrl: 'modules/degree/index.html', controller: 'NavCtrl'});
+  $routeProvider.when('/degree', {templateUrl: 'modules/degree/index2.html', controller: 'NavCtrl'});
   $routeProvider.otherwise({redirectTo: '/schedule'});
 }]);

@@ -5,10 +5,13 @@
   <title>MyOrange</title>
   <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap-theme.css">
-  <link rel="stylesheet" type="text/css" href="lib/misc/simple-sidebar.css">
-
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
   <link rel="shortcut icon" href="favicon.ico">
-
+  <style>
+    .thumbnail { height: 280px !important; }
+    .btn-droppable { width: 180px; height: 30px; padding-left: 4px; }
+    .btn-draggable { width: 160px; }
+  </style>
 </head>
   <body style="display:inline;" background="img/campus_background.jpg" ng-app="myOrange">
 
@@ -20,6 +23,66 @@
       </div>
     </div>
 
+              <form role="form" id="cellularForm">
+                <b>Image Viewer:</b>
+                 <div class="form-group">
+                   <input class="form-control" id="ruleNumInput" type="number" min="0" max="255" placeholder="Enter rule number: [0-255]">
+                 </div>
+                 <div class="checkbox">
+                   <label>
+                     <input type="checkbox" id = "randomInput"> Random First Row
+                   </label>
+                 </div>
+                  <a href="#myModal" role="button" class="ruleBtn btn btn-primary" data-toggle="modal">View Image</a>
+
+                  <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Cellular Automaton Timespace Viewer</h3>
+                    </div>
+                    <div class="modal-body">
+                      <img id='ruleImgId'>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+              </form>
+
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+
+
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
@@ -28,7 +91,10 @@
     <script src="js/controllers.js"></script>
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
-    
+    <script src="lib/angular/angular-dragdrop.min.js"></script>
+    <script src="modules/degree/app.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
   </body>
 
 </html>
