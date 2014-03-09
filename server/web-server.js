@@ -1,10 +1,14 @@
 #!/usr/bin/env node
-
 var util = require('util'),
     http = require('http'),
     fs = require('fs'),
     url = require('url'),
-    events = require('events');
+    events = require('events'),
+    navigation = require('./navigation.js'),
+    schedule = require('./schedule.js'),
+    maps = require('./maps.js'),
+    communicator = require('./communicator.js'),
+    degree =  require('./degree.js');
 
 var DEFAULT_PORT = 8000;
 
