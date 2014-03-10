@@ -1,4 +1,3 @@
-#MyOrange
 ##Description:
 Project for Syracuse University's CIS454 - Software Implementation course. The purpose of the web application is to enhance student life with a schedule, map, degree planner, and profile system.
 
