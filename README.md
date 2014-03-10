@@ -9,9 +9,9 @@ Grant (ggriffiths) <br>
 Kevin (kdaziz)
 
 ##Project Stack:
-AngularJS
-MongoDB
-NodeJS
+AngularJS <br>
+MongoDB <br>
+NodeJS <br>
 Bootstrap
 
 ##Project Seed:
