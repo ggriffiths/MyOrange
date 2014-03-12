@@ -47,7 +47,7 @@
 <script src="user.js"></script>
 <script src="calendar-api.js"></script>
 <script type="text/javascript" src="app.js"></script>
-<div id="wrapper" ng-app='myApp'>
+<div id="wrapper" ng-app='myApp' ng-controller='ScheduleCtrl'>
   <div id='cal-container' class='auth' ng-controller='CalendarCtrl'>
     <div id='auth'>
       <b>In order to access your Google Calendar, you must authorize access to your Google Account</b>
@@ -105,13 +105,25 @@
         <button id='addClassButton'
 	        style='margin-top:25px;'
                 class='btn btn-primary btn-lg'
-                ng-click='events.AddToCalendar(degreePlan,data.course)'>
+                ng-click='events.AddToCalendar(user, degreePlan, data.semester, data.course)'>
                 Add To Calendar</button>
         <button id='cancelButton'
 		onclick='schedule.events.CancelButton();'
 		class='btn btn-small'>Cancel</button>
       </div>
-
+      <div ng-controller='CalendarCtrl'>
+        <b>Toggle Calendars</b><br>
+        <!--select id='calendarSelect'
+                ng-model='calendar'
+                ng-click='refreshCalendar(calendar)'
+                ng-options='k for (k,v) in calendars'></select-->
+        <div ng-repeat='calendar in user.calendars'>
+           <input type='checkbox'
+                  value='{{calendar.id}}'
+                  ng-click='refreshCalendar(user, getSelected())'
+                  ng-model='calendar.selected'>{{calendar.summary}}</input>
+        </div>
+      </div>
 
     </div>
   </div>

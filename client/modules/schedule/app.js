@@ -10,17 +10,43 @@ myApp.factory('Classes', function() {
 }).factory('Events', function() {
   Events = schedule.events;
   return Events;
+}).factory('User', function() {
+  User = user;
+  return User;
 });
 
 // Angular Controllers
-CalendarCtrl = function($scope) {
-  $scope.refreshCalendar = schedule.refreshCalendar
+ScheduleCtrl = function($scope, User) {
+  $scope.user = User;
+};
+
+CalendarCtrl = function($scope, User) {
+  //$scope.user.calendars = [];
+  //if ($scope.calendars == []) 
+  $scope.getSelected = function() {
+    var selected = [];
+    for (i in $scope.user.calendars)
+      if ($scope.user.calendars[i].selected)
+        selected.push($scope.user.calendars[i].id);
+    console.log(selected);
+    return selected;
+  };
+  //                         'id':$scope.user.email,
+  //                         'selected':true});
+  $scope.refreshCalendar = schedule.refreshCalendar;
   $scope.authorize = function() {
-    user.authorize( function() {
-      user.initEmail(schedule.refreshCalendar);
-      document.getElementById('auth').hidden = true;
+    $scope.user.authorize(function() {
+      $scope.user.initEmail(function() {
+        gCal.getCalendarList(function(r) {
+          $scope.user.calendars = r.items;
+	  $scope.$apply();
+        });
+	schedule.refreshCalendar($scope.user);
+      });
     });
-  }  
+    document.getElementById('auth').hidden = true;
+  };
+  window.scope = $scope
 };
 
 SidebarCtrl = function($scope, Classes, Events){
@@ -50,7 +76,7 @@ var schedule = {}
   schedule.getDegreePlanFromSemester - gets a list of classes
   to add to the calendar for the semester
 */
-schedule.getDegreePlanFromSemester = function(s) {
+schedule.getDegreePlanFromSemester = function(semester, user) {
   var degreePlan = user.degreePlan;
   for (var i in degreePlan)
     if (s == degreePlan[i].name)
@@ -63,12 +89,16 @@ schedule.getDegreePlanFromSemester = function(s) {
   of classes from the degree plan
   {string} semester - the semester to add
 */
-schedule.addSemesterFromDegreePlan = function(semester) {
-  var classes = schedule.getDegreePlanFromSemester(semester);
-  var calendarId = user.calendars[semester];
+schedule.addSemesterFromDegreePlan = function(semester, user) {
+  var classes = schedule.getDegreePlanFromSemester(semester, user);
+  var calendarId = user.getCalendarId(semester);
   if (!calendarId) { 
-    gCal.createCalendar(user, semester, function() {
-        schedule.addSemesterFromDegreePlan(semester);
+    gCal.createCalendar(semester, function(r) {
+        user.calendars.push({
+         'name': semester,
+         'id' : r.id
+        });
+        schedule.addSemesterFromDegreePlan(semester, user);
       });
     alert('Creating calendar for ' + semester);
     return;
@@ -85,7 +115,7 @@ schedule.addSemesterFromDegreePlan = function(semester) {
                                       course.days);
     gCal.calendarEventRequest(calendar_event);
   };
-  schedule.refreshCalendar();
+  schedule.refreshCalendar(user);
 };
 
 /*
@@ -93,11 +123,15 @@ schedule.addSemesterFromDegreePlan = function(semester) {
   it to the user's google calendar.
   returns: boolean success/failure
 */
-schedule.addToCalendar = function(course) {
-  var calendarId = user.calendars[course.semester];
+schedule.addToCalendar = function(course, user) {
+  var calendarId = user.getCalendarId(course.semester);
   if (!calendarId) {
-    gCal.createCalendar(user, course.semester, function() {
-        schedule.addToCalendar(course);
+    gCal.createCalendar(course.semester, function(r) {
+        user.calendars.push({
+          'name': semester,
+          'id' : r.id
+         });
+        schedule.addToCalendar(course, user);
     });
     alert('Creating calendar for ' + course.semester);
     return;
@@ -112,16 +146,17 @@ schedule.addToCalendar = function(course) {
                                     course.days);
   // TODO: Handle case where multiple calendar events must be made
   gCal.calendarEventRequest(calendar_event);
-  schedule.refreshCalendar();
+  schedule.refreshCalendar(user);
 }
 
 /*
   schedule.refreshCalendar - reloads the google calendar iframe
   returns true
 */
-schedule.refreshCalendar = function(calendarId) {
-  calendarId = calendarId || user.getEmail(schedule.refreshCalendar);
-  cal_string = 'https://www.google.com/calendar/embed?&showTitle=0&showNav=0&showPrint=0&showCalendars=0&showTz=0&mode=WEEK&src='+calendarId+'&ctz=America%2FNew_York';
+schedule.refreshCalendar = function(user, calendarId) {
+  calendarId = calendarId || [user.getEmail(schedule.refreshCalendar)];
+      
+  cal_string = 'https://www.google.com/calendar/embed?&showTitle=0&showNav=0&showPrint=0&showCalendars=0&showTz=0&mode=WEEK&ctz=America%2FNew_York&src=' + calendarId.join('&src=');
   iframe = document.getElementById('cal');
   iframe.src = cal_string;
 };
@@ -146,8 +181,8 @@ schedule.events.CancelButton = function() {
   document.getElementById('selectAction').hidden = false;
 }
 
-schedule.events.AddToCalendarButton = function(degreePlan, course) {
+schedule.events.AddToCalendarButton = function(user, degreePlan, semester, course) {
   if (degreePlan) schedule.addSemesterFromDegreePlan(
-      document.getElementById('semester').value);
-  else schedule.addToCalendar(course);
+      semester, user);
+  else schedule.addToCalendar(course, user);
 }

@@ -4,16 +4,15 @@
 gCal = {}
 
 /*
-  createCalendar - creates a new google calendar for the user
+  createCalendar - creates a new google calendar
 */
-gCal.createCalendar = function(user, semester, callback) {
+gCal.createCalendar = function(name, callback) {
   gapi.client.load('calendar','v3', function() {
-    request = gapi.client.calendar.calendars.insert( {
-      'resource' : { 'summary': semester }
+    request = gapi.client.calendar.calendars.insert({
+      'resource' : { 'summary': name }
     });
     request.execute( function(r) {
-      user.calendars[semester] = r.id;
-      if (callback) callback();
+      if (callback) callback(r);
     });
   });
 };
@@ -49,6 +48,13 @@ gCal.createEvent = function(calendarId,
   return calendar_event;
 };
 
+gCal.getCalendarList = function(callback) {
+  var request = gapi.client.request({
+    'path':'/calendar/v3/users/me/calendarList',
+  });
+  callback = callback || function(r) {return;};
+  request.execute(callback);
+};
 /*
   calendarEventRequest - uses the GCal api to make an HTTP request
   object request_body: params to be used in post request
@@ -61,6 +67,7 @@ gCal.calendarEventRequest = function(request_body, callback) {
     'method': 'POST',
     'body': JSON.stringify(request_body)
   });
+  callback = callback || function(r) {return;};
   request.execute(callback);
 };
 
@@ -73,7 +80,7 @@ gCal.calendarEventRequest = function(request_body, callback) {
 */
 gCal.getRecurrence = function(s) {
   days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-  repeat = [];
+  epeat = [];
   for (var i in days) {
     if (s.search(days[i]) >= 0) repeat.push(days[i].toUpperCase());
   }

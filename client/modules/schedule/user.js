@@ -1,9 +1,18 @@
-user = {}
-user.email = ''
-user.degreePlan = []
-user.calendars = {
+user = {};
+user.email = '';
+user.degreePlan = [];
+user.calendars = [];
+
+/*
+  Get calendar
+*/
+user.getCalendarId = function(name) {
+  var calendarId;
+  for (var i in user.calendars)
+    calendarId = user.calendars[i].name == name ? user.calendars[i].id : calendarId;
+  return calendarId;
 };
- 
+
 /*
   Get/Set/Initialize user.email
 */
