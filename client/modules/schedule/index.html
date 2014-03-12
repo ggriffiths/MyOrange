@@ -1,0 +1,118 @@
+<link rel="stylesheet" type="text/css" href="/client/lib/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/client/lib/bootstrap/css/bootstrap-theme.css">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet" type="text/css" href="/client/style/app.css">
+<link rel="stylesheet" href="/client/lib/font-awesome/css/font-awesome.min.css">
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  .btn, select {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  #wrapper {
+    padding: 10px;
+  }
+  #cal-container {
+    float:left;
+    padding: 0px;
+    margin: 0;
+    height:100%;
+    width:70%;
+  }
+  #cal {
+    width:100%;
+    height:100%;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  #control_panel {
+    float:right;
+    text-align:left;
+    width:30%;
+    padding-top:10px;
+  }
+  #toolbar{
+    margin: 10px;
+    background-color:rgba(255,255,255,0.85);
+  }
+</style>
+<script type="text/javascript" src="/client/lib/angular/angular.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=load"></script>
+<script src="data.js"></script>
+<script src="user.js"></script>
+<script src="calendar-api.js"></script>
+<script type="text/javascript" src="app.js"></script>
+<div id="wrapper" ng-app='myApp'>
+  <div id='cal-container' class='auth' ng-controller='CalendarCtrl'>
+    <div id='auth'>
+      <b>In order to access your Google Calendar, you must authorize access to your Google Account</b>
+      <button ng-click='authorize()'
+              class='auth btn btn-primary btn-lg'>Authorize</button>
+    </div>
+    <iframe id='cal'></iframe>
+  </div>
+  <div id="control_panel">
+    <div id="toolbar" ng-controller='SidebarCtrl'>
+
+<!-- SELECT AN ACTION MENU -->
+      <div id='selectAction'>
+        <button ng-click='degreePlan = false; events.AddPanel(0);'
+                class='btn btn-primary btn-lg'>
+          Add Class
+        </button>
+        <button ng-click='degreePlan = true; events.AddPanel(1);'
+                class='btn btn-primary btn-lg'>
+          Add Classes from Degree Plan
+        </button>
+        <!-- TODO: implement this
+        <button onclick=';' class='btn btn-primary btn-lg'>
+          Remove Class
+        </button>
+        -->
+      </div>
+
+<!-- MENU FOR ADDING CLASSES -->
+      <div id='addClass' hidden=true>
+        <div id='semester'>
+          <b>Semester:</b>
+          <br>
+          <select ng-model="data.semester" ng-options="v as k for (k,v) in classes"></select>
+          <br>
+        </div>
+        <div id='prefix'>
+          <b>Course Subject:</b>
+          <br>
+          <select ng-model="data.prefix"
+                  ng-options="v as k for (k,v) in data.semester">
+          </select>
+          <br>
+        </div>
+        <div id='course'>
+          <b>Course:</b>
+          <br> 
+          <select ng-model="data.course"
+                  ng-options="v as k for (k,v) in data.prefix"></select>
+          <br>
+        </div>
+        <!-- TODO: implement
+                button id='preview'
+                class='btn btn-primary btn-lg'>Preview Calendar</button-->
+        <button id='addClassButton'
+	        style='margin-top:25px;'
+                class='btn btn-primary btn-lg'
+                ng-click='events.AddToCalendar(degreePlan,data.course)'>
+                Add To Calendar</button>
+        <button id='cancelButton'
+		onclick='schedule.events.CancelButton();'
+		class='btn btn-small'>Cancel</button>
+      </div>
+
+
+    </div>
+  </div>
+</div>
