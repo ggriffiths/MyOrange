@@ -1,10 +1,17 @@
 /*
   calendar-api.js - contains various Google Calendar API calls
+  namespace contained in {gCal}
+
+  Dependencies:
+  gapi - Google JavaScript Client API
+  
 */
+
 gCal = {}
 
 /*
   getCalendarList - retrieves all of the user's calendars
+  {function} callback - callback fn to handle response
 */
 gCal.getCalendarList = function(callback) {
   var request = gapi.client.request({
@@ -16,21 +23,31 @@ gCal.getCalendarList = function(callback) {
 
 /*
   createCalendar - creates a new google calendar
+  {string} name - calendar name
+  {function} callback - callback fn to handle response
 */
 gCal.createCalendar = function(name, callback) {
   gapi.client.load('calendar','v3', function() {
     request = gapi.client.calendar.calendars.insert({
       'resource' : { 'summary': name }
     });
-    request.execute( function(r) {
-      if (callback) callback(r);
-    });
+    callback = callback || function(){return;};
+    request.execute(callback);
   });
 };
   
 /*
   createEvent - creates an event for a class to be passed to the
-  GCal API
+  GCal API (get ready for a shitload of args)
+  {string} calendarId - calendar to add event to
+  {string} semester - TODO: delete this, unnecessary
+  {string} summary - event title, use course title
+  {string} description - event description, use course description
+  {string} loc - event location, use classroom
+  {DateTime} start - a datetime string representing start time/date
+  {DateTime} end - a datetime string  representing end time/date
+  {DateTime} until - TODO: use this for recurrence to make noninfinite
+  returns: {object} calendar_event to use in event insert request body
 */
 gCal.createEvent = function(calendarId,
                             semester,
@@ -61,8 +78,9 @@ gCal.createEvent = function(calendarId,
 
 /*
   calendarEventRequest - uses the GCal api to make an HTTP request
-  object request_body: params to be used in post request
-  returns: response object
+  {object} request_body: params to be used in post request
+  {function} callback: callback fn to handle response
+  returns: {object} response
 */
 gCal.calendarEventRequest = function(request_body, callback) {
   var request = gapi.client.request({
@@ -70,6 +88,8 @@ gCal.calendarEventRequest = function(request_body, callback) {
            request_body.calendarId + '/events',
     'method': 'POST',
     'body': JSON.stringify(request_body)
+    //TODO: ^ Check if JSON.stringify is actually necessary
+    //      idk but fuck it, it works
   });
   callback = callback || function(r) {return;};
   request.execute(callback);
@@ -80,7 +100,11 @@ gCal.calendarEventRequest = function(request_body, callback) {
   standard recurrence string
   {string} s: a string of days to repeat, days are abbreviated
     to two letters each: ie:"SuMoTuWeThFrSa"
-  returns: the string to pass to the API request
+  returns: {string} RRule to specify recurrence
+
+  TODO: This should really be in the schedule object, has nothing
+  to do with accessing gapi
+  TODO: implement 'Until'
 */
 gCal.getRecurrence = function(s) {
   days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
@@ -89,7 +113,6 @@ gCal.getRecurrence = function(s) {
     if (s.search(days[i]) >= 0) repeat.push(days[i].toUpperCase());
   }
   rrule = 'RRULE:FREQ=WEEKLY;BYDAY='+repeat.join(',')+';';
-  // TODO: implement 'Until'
   return rrule;
 };
 
