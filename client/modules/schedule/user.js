@@ -9,7 +9,7 @@ user.calendars = [];
 user.getCalendarId = function(name) {
   var calendarId;
   for (var i in user.calendars)
-    calendarId = user.calendars[i].name == name ? user.calendars[i].id : calendarId;
+    calendarId = user.calendars[i].summary == name ? user.calendars[i].id : calendarId;
   return calendarId;
 };
 

@@ -21,18 +21,13 @@ ScheduleCtrl = function($scope, User) {
 };
 
 CalendarCtrl = function($scope, User) {
-  //$scope.user.calendars = [];
-  //if ($scope.calendars == []) 
   $scope.getSelected = function() {
     var selected = [];
     for (i in $scope.user.calendars)
       if ($scope.user.calendars[i].selected)
         selected.push($scope.user.calendars[i].id);
-    console.log(selected);
     return selected;
   };
-  //                         'id':$scope.user.email,
-  //                         'selected':true});
   $scope.refreshCalendar = schedule.refreshCalendar;
   $scope.authorize = function() {
     $scope.user.authorize(function() {
@@ -93,14 +88,7 @@ schedule.addSemesterFromDegreePlan = function(semester, user) {
   var classes = schedule.getDegreePlanFromSemester(semester, user);
   var calendarId = user.getCalendarId(semester);
   if (!calendarId) { 
-    gCal.createCalendar(semester, function(r) {
-        user.calendars.push({
-         'name': semester,
-         'id' : r.id
-        });
-        schedule.addSemesterFromDegreePlan(semester, user);
-      });
-    alert('Creating calendar for ' + semester);
+    console.log('Must Create Calendar!');
     return;
   }
   for (var i in classes) {
@@ -127,13 +115,9 @@ schedule.addToCalendar = function(course, user) {
   var calendarId = user.getCalendarId(course.semester);
   if (!calendarId) {
     gCal.createCalendar(course.semester, function(r) {
-        user.calendars.push({
-          'name': semester,
-          'id' : r.id
-         });
-        schedule.addToCalendar(course, user);
+      user.calendars.push(r);
+      schedule.addToCalendar(course,user);
     });
-    alert('Creating calendar for ' + course.semester);
     return;
   }
   calendar_event = gCal.createEvent(calendarId,

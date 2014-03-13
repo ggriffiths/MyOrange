@@ -4,6 +4,17 @@
 gCal = {}
 
 /*
+  getCalendarList - retrieves all of the user's calendars
+*/
+gCal.getCalendarList = function(callback) {
+  var request = gapi.client.request({
+    'path':'/calendar/v3/users/me/calendarList?minAccessRole=owner',
+  });
+  callback = callback || function(r) {return;};
+  request.execute(callback);
+};
+
+/*
   createCalendar - creates a new google calendar
 */
 gCal.createCalendar = function(name, callback) {
@@ -48,13 +59,6 @@ gCal.createEvent = function(calendarId,
   return calendar_event;
 };
 
-gCal.getCalendarList = function(callback) {
-  var request = gapi.client.request({
-    'path':'/calendar/v3/users/me/calendarList',
-  });
-  callback = callback || function(r) {return;};
-  request.execute(callback);
-};
 /*
   calendarEventRequest - uses the GCal api to make an HTTP request
   object request_body: params to be used in post request
@@ -80,7 +84,7 @@ gCal.calendarEventRequest = function(request_body, callback) {
 */
 gCal.getRecurrence = function(s) {
   days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
-  epeat = [];
+  repeat = [];
   for (var i in days) {
     if (s.search(days[i]) >= 0) repeat.push(days[i].toUpperCase());
   }
