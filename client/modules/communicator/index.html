@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script>
+
+function editName()
+{
+   var newName = prompt("Please enter your new name.","");
+   if (newName != null)
+   {
+     document.getElementById("name").innerHTML = newName.fontcolor("red");
+   }
+}
+
+function editMajor()
+{
+	var newMajor = prompt("Please enter your new major.","");
+	if (newMajor != null)
+	{
+		document.getElementById("major").innerHTML = newMajor.fontcolor("red");
+	}
+}
+
+function editYear()
+{
+	var newYear = prompt("Please enter your new year.","");
+	if (newYear != null)
+	{
+		document.getElementById("year").innerHTML = newYear.fontcolor("red");
+	}
+}
+
+</script>
+</head>
+
+<body>
+<script>
+//var name = "Name1";
+//var major = "Major";
+//var year = "Year";
+//var courses = "Courses:";
+</script>
+
+<body style="background-color:gainsboro;">
+
+<table width="100%"  border="0">
+   <tr valign = "top">
+     <td style = "width:300px; text-align-top">
+       <img src="http://i.imgur.com/kRmmtxA.jpg" width="300">
+     </td>
+
+     <td style = "width:400px; text-align-top">
+       <h1 id = "name"><font color="red"><strong>Name</strong></font></h1>
+       <button type="button" style = "float:right" onclick = "editName()">Edit</button>
+       <br />
+       <h3 id = "major"><font color="red"><strong>Major</strong></font></h3>
+       <button type="button"  style = "float:right" onclick = "editMajor()">Edit</button>
+       <br />
+       <h3 id = "year"><font color="red"><strong>Year</strong></font></h3>
+       <button type="button" style = "float:right" onclick = "editYear()">Edit</button>
+       <br />
+     </td>
+   </tr>
+
+   <tr>
+     <td>
+       <p><font color="red">Courses</font></p>
+     </td>
+   </tr>
+</table>
+
+
+</body>
+
+</html>
