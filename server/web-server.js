@@ -10,14 +10,11 @@ var util = require('util'),
     communicator = require('./communicator.js'),
     degree =  require('./degree.js');
 
+var MongoClient = require('mongodb').MongoClient,format = require('util').format;
+MongoClient.connect('mongodb://admin:admin@ds039507.mongolab.com:39507/myorange', function(err, db) {
+  if(err) throw err;
 
- var MongoClient = require('mongodb').MongoClient
-    , format = require('util').format;
-
-  MongoClient.connect('mongodb://admin:admin@ds039507.mongolab.com:39507/myorange', function(err, db) {
-    if(err) throw err;
-
-    var collection = db.collection('test_insert');
+    /*var collection = db.collection('test_insert');
     collection.insert({a:2}, function(err, docs) {
 
       collection.count(function(err, count) {
@@ -30,7 +27,7 @@ var util = require('util'),
         // Let's close the db
         db.close();
       });
-    });
+    });*/
   })
 
 var DEFAULT_PORT = 8000;
