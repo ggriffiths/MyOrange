@@ -140,3 +140,6 @@ body {
   }
 
 }
+.thumbnail { height: 280px !important; }
+.btn-droppable { width: 180px; height: 30px; padding-left: 4px; }
+.btn-draggable { width: 160px; }

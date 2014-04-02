@@ -39,15 +39,10 @@
                       <label class="sr-only" for="exampleInputPassword2">Password</label>
                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
                     </div>
-                    <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Remember me
-                      </label>
-                    </div>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button class="btn" data-dismiss="modal" aria-hidden="true">Login</button>
+                  <button id="btnLogin" class="btn" data-dismiss="modal" aria-hidden="true">Login</button>
                   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
               </div>
@@ -86,10 +81,31 @@
             </div>
           </div>
       </form>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
-    
+    <script>
+    $('#btnLogin').on('click', function (e) {
+
+      var formData = {email:"ggp493@gmail.com",password:"wellAtLeastYouPayAttentionToSomething"}; 
+
+      $.ajax({
+          url : "http://localhost:8000/login",
+          type: "POST",
+          data : formData,
+          success: function(data, textStatus, jqXHR)
+          {
+              alert("Worked!");
+          },
+          error: function (jqXHR, textStatus, errorThrown)
+          {
+              alert("Didn't Work :(");
+          }
+      });
+
+    })
+    </script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>

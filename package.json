@@ -3,6 +3,8 @@
   "description": "Software implementation course project",
   "repository": "https://github.com/ggriffiths/myorange",
   "dependencies": {
-    "mongodb": "*"
+    "express": "3.5.0",
+    "jade": "*",
+    "mongoose": "*"
   }
 }
