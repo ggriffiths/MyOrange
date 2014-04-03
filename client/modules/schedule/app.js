@@ -16,7 +16,7 @@
 
 // Development: viewing from //client/modules/schedule/index.html
 // Production: viewing from //client/main.html#/schedule
-DEVELOPMENT = true;
+DEVELOPMENT = false;
 myApp = DEVELOPMENT ? angular.module('myApp',[]) : angular.module('myApp');
 
 /*

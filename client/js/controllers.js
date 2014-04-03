@@ -6,10 +6,10 @@ angular.module('myApp.controllers', []).
   controller('NavCtrl', [function() {
     document.getElementById("degree").style.visibility="hidden";
     document.getElementById("map-canvas").style.visibility="hidden";
-  	if(window.location.href=="http://localhost:8000/client/main.html#/map"){
+  	if(window.location.href=="http://localhost:8000/main.html#/map"){
 		document.getElementById("map-canvas").style.visibility="visible";
   	}
-  	else if(window.location.href=="http://localhost:8000/client/main.html#/degree"){
+  	else if(window.location.href=="http://localhost:8000/main.html#/degree"){
   		document.getElementById("degree").style.visibility="visible";
   	}
   }]).controller('oneCtrl', function($scope, $timeout) {

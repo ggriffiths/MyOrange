@@ -9,10 +9,12 @@ Grant (ggriffiths) <br>
 Kevin (kdaziz)
 
 ##Project Stack:
-AngularJS <br>
 MongoDB <br>
+ExpressJS <br>
+AngularJS <br>
 NodeJS <br>
-Bootstrap
+AngularUI <br>
+Mongoose 
 
 ##Project Seed:
 angular-seed
