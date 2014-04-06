@@ -55,10 +55,20 @@
         </div>
       </div>
       <div class="contentWrapper ng-cloak">
-        <div class="span3" style="margin-left:20px;">
-          <div class="btn btn-droppable" ng-repeat="item in list5" data-drop="true" ng-model='list5' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list5])'}"  jqyoui-droppable="{index: {{$index}}}">
+        <div class="span3" style="width:1200px">
+                <div style="background-color:rgba(255,255,255,0.75)" class="thumbnail" data-drop="true" ng-model='list5' data-jqyoui-options="optionslist5" jqyoui-droppable="{multiple:true}">
+                  <div class="caption">
+                    <div style="margin:1px"class="btn btn-info btn-draggable" ng-repeat="item in list5"  tooltip="Some text" tooltip-trigger="mouseenter" nng-show="item.title" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</a></div>
+                  </div>
+                </div>
+
+          <!--div class="btn btn-droppable" ng-repeat="item in list5" data-drop="true" ng-model='list5' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list5])'}"  jqyoui-droppable="{index: {{$index}}}">
             <div class="btn btn-info btn-draggable" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list5" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" ng-hide="!item.title">{{item.title}}</div>
-          </div>
+          </div-->
+
+          <!--div class="btn btn-droppable" ng-repeat="item in list6" data-drop="true" ng-model='list6' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list6])'}"  jqyoui-droppable="{index: {{$index}}}">
+            <div class="btn btn-info btn-draggable" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list6" jqyoui-draggable="{index: {{$index}},placeholder:true,animate:true}" ng-hide="!item.title">{{item.title}}</div>
+          </div-->
         </div>
       </div>
     </div>

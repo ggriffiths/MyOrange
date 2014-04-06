@@ -60,7 +60,6 @@ exports.listCourses = function(req, res) {
 // Lists all catalog courses
 exports.listCatalogCourses = function(req, res) {
   CatalogCourse.find(function(err, catalogCourses) {
-    console.log("listCatalogCourses func");
     res.send(catalogCourses);
   });
 }

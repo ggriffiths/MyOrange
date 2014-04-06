@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
  
 var catalogCourseSchema = new Schema({
     department:  String,  
-    number:  Number,
+    number:  String,
     name:  String
 });
 
-module.exports = mongoose.model('CatalogCourse', catalogCourseSchema);
+module.exports = mongoose.model('catalogCourse', catalogCourseSchema);
