@@ -33,16 +33,16 @@
                     <form class="form" role="form">
                     <div class="form-group">
                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                      <input type="email" class="form-control" id="loginEmailInput" placeholder="Email">
                     </div>
                     <div class="form-group">
                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                      <input type="password" class="form-control" id="loginPasswordInput" placeholder="Password">
                     </div>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button id="btnLogin" class="btn" data-dismiss="modal" aria-hidden="true">Login</button>
+                  <button onClick="login()" id="btnLogin" class="btn" data-dismiss="modal" aria-hidden="true">Login</button>
                   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
               </div>
@@ -53,28 +53,36 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">MyOrange Register</h3>
+                    <h3 id="myModalLabel">MyOrange Registration</h3>
                     <form class="form" role="form">
                     <div class="form-group">
                       <label class="sr-only" for="displayName">Display Name</label>
-                      <input type="email" class="form-control" id="displayName" placeholder="Display Name">
+                      <input type="email" class="form-control" id="displayNameRegister" placeholder="First Name">
                     </div>
                     <div class="form-group">
                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email">
+                      <input type="email" class="form-control" id="emailRegister" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputEmail2">Major</label>
+                      <input type="email" class="form-control" id="majorRegister" placeholder="Major">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputEmail2">Expected Graduation Year</label>
+                      <input type="email" class="form-control" id="graduationRegister" placeholder="Expected Graduation Year">
                     </div>
                     <div class="form-group">
                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                      <input type="password" class="form-control" id="passwordRegister" placeholder="Password">
                     </div>
                     <div class="form-group">
                       <label class="sr-only" for="exampleInputPassword3">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Confirm Password">
+                      <input type="password" class="form-control" id="passwordRegister2" placeholder="Confirm Password">
                     </div>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button class="btn" data-dismiss="modal" aria-hidden="true">Register</button>
+                  <button onClick="register()" class="btn" data-dismiss="modal" aria-hidden="true">Register</button>
                   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 </div>
               </div>
@@ -86,25 +94,62 @@
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
     <script>
-    $('#btnLogin').on('click', function (e) {
+    function login(){
 
-      var formData = {email:"ggp493@gmail.com",password:"wellAtLeastYouPayAttentionToSomething"}; 
+      var formData = {
+        email:document.getElementById("loginEmailInput").value,
+        password:document.getElementById("loginPasswordInput").value
+      }; 
 
       $.ajax({
-          url : "http://localhost:8000/login",
+          url : "http://localhost:8000/api/login",
           type: "POST",
           data : formData,
           success: function(data, textStatus, jqXHR)
           {
-              alert("Worked!");
+              window.location = "http://localhost:8000/main.html";
           },
           error: function (jqXHR, textStatus, errorThrown)
           {
-              alert("Didn't Work :(");
+              alert("Incorrect Login Information");
+              window.location = "http://localhost:8000/#myLoginModal";
           }
       });
+    }
+    
 
-    })
+    function register(){
+
+      if(document.getElementById("passwordRegister").value==document.getElementById("passwordRegister2").value){
+        var formData = {
+          displayName:document.getElementById("passwordRegister").value,
+          email:document.getElementById("emailRegister").value,
+          major:document.getElementById("majorRegister").value,
+          year:document.getElementById("graduationRegister").value,
+          password:document.getElementById("passwordRegister").value,
+          courses:[]
+        }; 
+
+        $.ajax({
+            url : "http://localhost:8000/api/register",
+            type: "POST",
+            data : formData,
+            success: function(data, textStatus, jqXHR)
+            {
+                window.location = "http://localhost:8000/main.html";
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert("Duplicate Email Detected. Try a different email address.");
+                window.location = "http://localhost:8000";
+            }
+        });
+      }
+      else{
+        alert("Passwords do not match");
+      }
+
+    }
     </script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>

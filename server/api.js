@@ -9,13 +9,35 @@ var CatalogCourse = require('./catalogCourse.js');
 
 // Creates a new user
 exports.register = function(req, res) {
-    new User({displayName: req.body.displayName, email: req.body.email, password: req.body.password}).save();
+    User.findOne({ 'email': req.body.email }, function (err, docs) {
+      if (docs == null){
+        new User(
+        {
+          displayName: req.body.displayName, 
+          email: req.body.email, 
+          major: req.body.major, 
+          year: req.body.year, 
+          password: req.body.password,
+          courses: req.body.courses
+        }).save();
+        res.send("success");
+      }
+      else{
+        res.send(401);
+      }
+    });
 }
 
 // secure login for user
 exports.login = function(req, res) {
-  User.find({ 'email': req.body.email }, function (err, docs) {
-    console.log("test!");
+  User.findOne({ 'email': req.body.email }, function (err, docs) {
+    console.log(docs);
+    if(req.body.password == docs.password){
+      res.send("success");
+    }
+    else{
+      res.send('Incorrect Login Information', 401);
+    }
   });
 }
 
