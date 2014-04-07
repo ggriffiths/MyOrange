@@ -32,7 +32,6 @@ function login(){
       {
           writeCookie('currentUser', formData.email, 3);
           window.location = "http://localhost:8000/main.html";
-          alert(String(readCookie('currentUser')));
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
@@ -128,3 +127,4 @@ function readCookie(name) {
     }
     return '';
 }
+

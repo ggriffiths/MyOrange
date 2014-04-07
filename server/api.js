@@ -40,9 +40,13 @@ exports.updateUser = function(req, res) {
 // secure login for user
 exports.login = function(req, res) {
   User.findOne({ 'email': req.body.email }, function (err, docs) {
-    console.log(docs);
-    if(req.body.password == docs.password){
-      res.send("success");
+    if(docs){
+      if(req.body.password == docs.password){
+        res.send("success");
+      }
+      else{
+        res.send('Incorrect Login Information', 401);
+      }
     }
     else{
       res.send('Incorrect Login Information', 401);
