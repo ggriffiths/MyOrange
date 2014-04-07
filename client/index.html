@@ -93,64 +93,6 @@
 
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular/angular-route.js"></script>
-    <script>
-    function login(){
-
-      var formData = {
-        email:document.getElementById("loginEmailInput").value,
-        password:document.getElementById("loginPasswordInput").value
-      }; 
-
-      $.ajax({
-          url : "http://localhost:8000/api/login",
-          type: "POST",
-          data : formData,
-          success: function(data, textStatus, jqXHR)
-          {
-              window.location = "http://localhost:8000/main.html";
-          },
-          error: function (jqXHR, textStatus, errorThrown)
-          {
-              alert("Incorrect Login Information");
-              window.location = "http://localhost:8000/#myLoginModal";
-          }
-      });
-    }
-    
-
-    function register(){
-
-      if(document.getElementById("passwordRegister").value==document.getElementById("passwordRegister2").value){
-        var formData = {
-          displayName:document.getElementById("passwordRegister").value,
-          email:document.getElementById("emailRegister").value,
-          major:document.getElementById("majorRegister").value,
-          year:document.getElementById("graduationRegister").value,
-          password:document.getElementById("passwordRegister").value,
-          courses:[]
-        }; 
-
-        $.ajax({
-            url : "http://localhost:8000/api/register",
-            type: "POST",
-            data : formData,
-            success: function(data, textStatus, jqXHR)
-            {
-                window.location = "http://localhost:8000/main.html";
-            },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert("Duplicate Email Detected. Try a different email address.");
-                window.location = "http://localhost:8000";
-            }
-        });
-      }
-      else{
-        alert("Passwords do not match");
-      }
-
-    }
-    </script>
     <script src="js/app.js"></script>
     <script src="js/services.js"></script>
     <script src="js/controllers.js"></script>
@@ -159,6 +101,7 @@
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
     <script src="lib/bootstrap/js/bootstrap.js"></script>
+    <script>updateUser();</script>
   </body>
 
 </html>
