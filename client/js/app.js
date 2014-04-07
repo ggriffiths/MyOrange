@@ -30,10 +30,7 @@ function login(){
       data : formData,
       success: function(data, textStatus, jqXHR)
       {
-          writeCookie('currentUser', formData.email, 3);
-          writeCookie('displayName',data.displayName,3);
-          writeCookie('year',data.year,3);
-          writeCookie('major',data.major,3);
+          writeCookie('currentUser',formData.email,3);
           window.location = "http://localhost:8000/main.html";
       },
       error: function (jqXHR, textStatus, errorThrown)
@@ -63,6 +60,7 @@ function register(){
         data : formData,
         success: function(data, textStatus, jqXHR)
         {
+            writeCookie('currentUser',formData.email,3);
             window.location = "http://localhost:8000/main.html";
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -83,7 +81,7 @@ function updateUser(){
     displayName:readCookie('displayName'),
     email:readCookie('currentUser'),
     major:readCookie('major'),
-    year:readCookie('2015'),
+    year:readCookie('year'),
   }; 
 
   $.ajax({
@@ -92,11 +90,11 @@ function updateUser(){
       data : formData,
       success: function(data, textStatus, jqXHR)
       {
-          alert("worked");
+
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-          alert("nope");
+          alert("Didn't work");
       }
   });
 }

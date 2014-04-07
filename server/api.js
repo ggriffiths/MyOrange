@@ -96,3 +96,10 @@ exports.searchUsers = function(req, res) {
       res.send(users);
     });
 }
+
+// Find user by email
+exports.findUser = function(req, res) {
+    User.findOne({email: req.params.email}, function(error, user) {
+      res.send(user);
+    });
+}

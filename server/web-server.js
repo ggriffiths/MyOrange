@@ -31,6 +31,7 @@ var api = require('./api.js');
 app.get('/api/searchCourses/:department/:number', api.searchCourses);
 app.get('/api/searchCourses/:number', api.searchCourses);
 app.get('/api/searchUsers/:major?*/:year?*', api.searchCourses);
+app.get('/api/findUser/:email', api.findUser);
 
 // Get all
 app.get('/api/getUsers', api.listUsers);
