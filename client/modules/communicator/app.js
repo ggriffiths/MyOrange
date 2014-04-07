@@ -4,7 +4,7 @@ function editName()
    var newName = prompt("Please enter your new name.","");
    if (newName != null)
    {
-     document.getElementById("name").innerHTML = "<h1 style='color:red;line-height:100%'>" +  newName + "</h1>";
+     document.getElementById("name").innerHTML = "<h1>" +  newName + "</h1>";
      writeCookie('displayName', newName, 3);
    }
 }
