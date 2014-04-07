@@ -28,6 +28,15 @@ exports.register = function(req, res) {
     });
 }
 
+// Update a new user
+exports.updateUser = function(req, res) {
+    User.findOne({ 'email': req.body.email }, function (err, docs) {
+      docs.displayName = req.body.displayName; 
+      docs.major = req.body.major; 
+      docs.year = req.body.year;
+    });
+}
+
 // secure login for user
 exports.login = function(req, res) {
   User.findOne({ 'email': req.body.email }, function (err, docs) {
