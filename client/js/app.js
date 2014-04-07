@@ -31,6 +31,9 @@ function login(){
       success: function(data, textStatus, jqXHR)
       {
           writeCookie('currentUser', formData.email, 3);
+          writeCookie('displayName',data.displayName,3);
+          writeCookie('year',data.year,3);
+          writeCookie('major',data.major,3);
           window.location = "http://localhost:8000/main.html";
       },
       error: function (jqXHR, textStatus, errorThrown)
@@ -77,26 +80,23 @@ function register(){
 
 function updateUser(){
   var formData = {
-    displayName:document.getElementById("displayNameRegister").value,
-    email:document.getElementById("emailRegister").value,
-    major:document.getElementById("majorRegister").value,
-    year:document.getElementById("graduationRegister").value,
-    password:document.getElementById("passwordRegister").value,
-    courses:[]
+    displayName:readCookie('displayName'),
+    email:readCookie('currentUser'),
+    major:readCookie('major'),
+    year:readCookie('2015'),
   }; 
 
   $.ajax({
-      url : "http://localhost:8000/api/register",
+      url : "http://localhost:8000/api/updateUser",
       type: "POST",
       data : formData,
       success: function(data, textStatus, jqXHR)
       {
-          window.location = "http://localhost:8000/main.html";
+          alert("worked");
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-          alert("Duplicate Email Detected. Try a different email address.");
-          window.location = "http://localhost:8000";
+          alert("nope");
       }
   });
 }

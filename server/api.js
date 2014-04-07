@@ -30,11 +30,16 @@ exports.register = function(req, res) {
 
 // Update a new user
 exports.updateUser = function(req, res) {
-    User.findOne({ 'email': req.body.email }, function (err, docs) {
-      docs.displayName = req.body.displayName; 
-      docs.major = req.body.major; 
-      docs.year = req.body.year;
+    User.update({ 'email': req.body.email }, {
+      displayName: req.body.displayName,
+      major: req.body.major,
+      year: req.body.year
+    }, function(err){
+      if(err) res.json(err);
+      else res.send("success");
     });
+    console.log("inside update user");
+    res.send("success");
 }
 
 // secure login for user
