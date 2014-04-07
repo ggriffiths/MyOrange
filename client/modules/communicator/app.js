@@ -58,9 +58,9 @@ function displayUserData(){
 			writeCookie('major', major, 3);
 			writeCookie('displayName', displayName, 3);
 
-			document.getElementById("name").innerHTML = "<h1 style='color:black;line-height:100%'>" +  displayName + "</h1>";
-			document.getElementById("major").innerHTML = "<h3 style='color:black;line-height:75%'>" +  major + "</h3>";
-			document.getElementById("year").innerHTML = "<h3 style='color:black;line-height:75%'>" +  year + "</h3>";
+			document.getElementById("name").innerHTML = "<h1>" +  displayName + "</h1>";
+			document.getElementById("major").innerHTML = "<h3>" +  major + "</h3>";
+			document.getElementById("year").innerHTML = "<h3>" +  year + "</h3>";
 	    }
 	});
 
