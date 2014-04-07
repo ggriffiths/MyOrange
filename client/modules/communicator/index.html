@@ -3,33 +3,31 @@
 
 
 <body style="background-color:gainsboro;">
-<table width="100%"  border="0">
+<div style='padding-left:245px;padding-top:25px;padding-bottom  :25px;background-color:rgba(255,255,255,0.75'>
+<table width="50%"  border="0">
    <tr valign = "top">
-     <td style = "width:300px; text-align-top">
-       <img src="http://i.imgur.com/kRmmtxA.jpg" width="300">
+     <td style = "width:250px; text-align-top">
+       <img id="profilePic" src="http://upload.wikimedia.org/wikipedia/en/thumb/3/30/OttotheOrange.svg/248px-OttotheOrange.svg.png" width="300">
      </td>
 
-     <td style = "width:400px; text-align-top">
-       <h1 id = "name"><font color="red"><strong>Name</strong></font></h1>
-       <button type="button" style = "float:right" onclick = "editName()">Edit</button>
+     <td style = "width:100px;float:left;padding-left:25px">
+       <div id = "name"><h1>Name</h1></div>
+       <a onClick="editName();updateUser();" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
+       <br/><br/>
+       <div id = "major"><h3>Major</h3></div>
+       <a onClick="editMajor();updateUser();" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
+       <br /><br/>  
+       <div id = "year"><h3>Year</h3></div>
+       <a onClick="editYear();updateUser();" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
        <br />
-       <h3 id = "major"><font color="red"><strong>Major</strong></font></h3>
-       <button type="button"  style = "float:right" onclick = "editMajor()">Edit</button>
-       <br />
-       <h3 id = "year"><font color="red"><strong>Year</strong></font></h3>
-       <button type="button" style = "float:right" onclick = "editYear()">Edit</button>
-       <br />
-     </td>
-   </tr>
+       <br><br>
 
-   <tr>
-     <td>
-       <p><font color="red">Courses</font></p>
+       <br />
      </td>
-   </tr>
+   </tr>  
 </table>
-
+</div>
 
 </body>
-
+<script>displayUserData();</script>
 </html>
