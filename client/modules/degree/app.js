@@ -1,12 +1,20 @@
 var App = angular.module('drag-and-drop', ['ngDragDrop']);
 
 App.controller('oneCtrl', function($scope, $timeout) {
-  $scope.list1 = [{ 'title': 'Freshman', 'drag': false }];
-  $scope.list2 = [{ 'title': 'Sophomore', 'drag': false }];
-  $scope.list3 = [{ 'title': 'Junior', 'drag': false }];
-  $scope.list4 = [{ 'title': 'Senior', 'drag': false }];
   
-  $scope.list5 = [
+  $scope.list1 = [{ 'title': 'Freshman: Fall', 'drag': false }];
+  $scope.list2 = [{ 'title': 'Sophomore: Fall', 'drag': false }];
+  $scope.list3 = [{ 'title': 'Junior: Fall', 'drag': false }];
+  $scope.list4 = [{ 'title': 'Senior: Fall', 'drag': false }];
+  $scope.list5 = [{ 'title': 'Freshman: Spring', 'drag': false }];
+  $scope.list6 = [{ 'title': 'Sophomore: Spring', 'drag': false }];
+  $scope.list7 = [{ 'title': 'Junior: Spring', 'drag': false }];
+  $scope.list8 = [{ 'title': 'Senior: Spring', 'drag': false }];
+  $scope.list10 = [{ 'title': 'Major', 'drag': false }];
+  $scope.list11 = [{"title": "Computer Science", 'drag': true}, ];
+  $scope.listX = [{"title": "PHI 378", "name":"Minds and Machines", 'drag': true, 'drag': true} ];
+  
+  $scope.list9 = [
   {"title": "PHI 378", "name":"Minds and Machines", 'drag': true, 'drag': true},
   {"title": "CIS 467", "name":"Introduction to Artificial Intelligence", 'drag': true, 'drag': true},
   {"title": "CIS 471", "name":"Optimization Methods", 'drag': true, 'drag': true},
@@ -51,14 +59,26 @@ App.controller('oneCtrl', function($scope, $timeout) {
   {"title": "ECS 392", "name":"Ethical Aspects of Engineering and Computer Science", 'drag': true}
   ];
   
+
+  
   // Limit items to be dropped in list1
   $scope.optionsList1 = {
     accept: function(dragEl) {
-      if ($scope.list1.length >= 5) {
+      if ($scope.list1.length >= 6) {
         return false;
       } else {
         return true;
       }
+	  //if($scope.list1.item.title == 'Computer Science'){
+	  //return $scope.list8 = [{ 'title': 'Senior: Spring', 'drag': true },{"title": "PHI 378", "name":"Minds and Machines", 'drag': true, 'drag': true},];
+	  //}
     }
   };
+    //this.dropCallback = function(event, ui, title, $index) {
+    //if ($scope.list1.map(function(item) { return item.title; }) === 'Computer Science') {
+    //  $scope.list1.forEach(function(value, key) { $scope.list1[key].drag = false; });
 });
+
+
+
+
