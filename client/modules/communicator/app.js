@@ -14,7 +14,7 @@ function editMajor()
 	var newMajor = prompt("Please enter your new major.","");
 	if (newMajor != null)
 	{
-		document.getElementById("major").innerHTML = "<h3 style='color:red;line-height:75%'>" +  newMajor + "</h3>";
+		document.getElementById("major").innerHTML = "<h3>" +  newMajor + "</h3>";
 		writeCookie('major', newMajor, 3);
 	}
 }
@@ -24,7 +24,7 @@ function editYear()
 	var newYear = prompt("Please enter your new year.","");
 	if (newYear != null)
 	{
-		document.getElementById("year").innerHTML = "<h3 style='color:red;line-height:75%'>" +  newYear + "</h3>";
+		document.getElementById("year").innerHTML = "<h3>" +  newYear + "</h3>";
 		writeCookie('year', newYear, 3);
 	}
 }
