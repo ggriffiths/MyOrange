@@ -6,7 +6,6 @@ function editName()
    {
      document.getElementById("name").innerHTML = "<h1>" +  newName + "</h1>";
      writeCookie('displayName', newName, 3);
-     updateUser();
    }
 }
 
