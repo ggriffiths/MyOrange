@@ -73,7 +73,7 @@
                 </div>
               </li>
 			   <li class="span2" style='margin-left:10px;'>
-                <div style="background-color:rgba(255,255,255,0.75)" class="thumbnail" data-drop="true" ng-model='list10' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list10])'}"  jqyoui-droppable="{multiple:true}">
+                <div style="background-color:rgba(255,255,255,0.75)" class="thumbnail" data-drop="true" ng-model='list10' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=list10])'}" jqyoui-droppable="{onDrop:'dropCallback',multiple:true, animate:true}">
                   <div class="caption">
                     <div class="btn btn-info btn-draggable" ng-repeat="item in list10" ng-show="item.title" data-drag="{{item.drag}}" data-jqyoui-options="{revert: 'invalid'}" ng-model="list10" jqyoui-draggable="{index: {{$index}},animate:true}">{{item.title}}</div>
                   </div>
