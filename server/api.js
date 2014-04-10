@@ -28,12 +28,30 @@ exports.register = function(req, res) {
     });
 }
 
+// Update a new user
+exports.updateUser = function(req, res) {
+    User.update({ 'email': req.body.email }, {
+      displayName: req.body.displayName,
+      major: req.body.major,
+      year: req.body.year
+    }, function(err){
+      if(err) res.json(err);
+      else res.send("success");
+    });
+    console.log("inside update user");
+    res.send("success");
+}
+
 // secure login for user
 exports.login = function(req, res) {
   User.findOne({ 'email': req.body.email }, function (err, docs) {
-    console.log(docs);
-    if(req.body.password == docs.password){
-      res.send("success");
+    if(docs){
+      if(req.body.password == docs.password){
+        res.send("success");
+      }
+      else{
+        res.send('Incorrect Login Information', 401);
+      }
     }
     else{
       res.send('Incorrect Login Information', 401);
@@ -76,5 +94,12 @@ exports.searchCourses = function(req, res) {
 exports.searchUsers = function(req, res) {
     Course.find({department: req.params.department,number: req.params.number}, function(error, users) {
       res.send(users);
+    });
+}
+
+// Find user by email
+exports.findUser = function(req, res) {
+    User.findOne({email: req.params.email}, function(error, user) {
+      res.send(user);
     });
 }
