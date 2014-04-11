@@ -6,7 +6,7 @@
 
   Dependencies:
   ./user.js
-  ./data.js
+  ./apicalls.js
   ./calendar-api.js
   angular.js
 
@@ -26,7 +26,7 @@ myApp = DEVELOPMENT ? angular.module('myApp',[]) : angular.module('myApp');
   User: access user data
 */
 myApp.factory('Classes', function() {
-  Classes = scheduledata.getClasses();
+  Classes = apicalls.getCourses(false);
   return Classes;
 }).factory('Events', function() {
   Events = schedule.events;
@@ -49,21 +49,21 @@ ScheduleCtrl = function($scope, User) {
 };
 
 CalendarCtrl = function($scope) {
-  $scope.getSelected = function() {
+  /*$scope.getSelected = function() {
     var selected = [];
     for (i in $scope.user.calendars)
       if ($scope.user.calendars[i].selected)
         selected.push($scope.user.calendars[i].id);
     return selected;
-  };
+  };*/
   $scope.refreshCalendar = schedule.refreshCalendar;
   $scope.authorize = function() {
     $scope.user.authorize(function() {
       $scope.user.initEmail(function() {
-        gCal.getCalendarList(function(r) {
-          $scope.user.calendars = r.items;
-	  $scope.$apply();
-        });
+     //   gCal.getCalendarList(function(r) {
+     //     $scope.user.calendars = r.items;
+//	  $scope.$apply();
+//        });
 	schedule.refreshCalendar($scope.user);
       });
     });
@@ -75,10 +75,17 @@ SidebarCtrl = function($scope, Classes, Events){
   $scope.classes = Classes;
   
   $scope.data = {};
-  $scope.data.semester = $scope.classes['Fall 2014'];
-  $scope.data.prefix = $scope.data.semester['CIS'];
-  $scope.data.course = $scope.data.prefix['351'];
-  
+  $scope.data.dept = "ECS";
+  $scope.data.course = {};
+  $scope.data.departments = apicalls.getDeptList(false);
+  $scope.getCoursesByDept = function() {
+    return $scope.classes.filter(function(value,index,self) {
+        return value.department == $scope.data.dept;
+    });
+  };
+  $scope.data.clearCourse = function() {
+    $scope.data.course = {};
+  };
   $scope.events = {};
   $scope.events.AddPanel = Events.AddPanel;
   $scope.events.AddToCalendar = Events.AddToCalendarButton;
@@ -136,25 +143,28 @@ schedule.addSemesterFromDegreePlan = function(semester, user) {
   returns: {boolean} success/failure
 */
 schedule.addToCalendar = function(course, user) {
-  var calendarId = user.getCalendarId(course.semester);
-  if (!calendarId) {
+  var calendarId = user.email;//user.getCalendarId('Fall 2014');
+  /*if (!calendarId) {
     gCal.createCalendar(course.semester, function(r) {
-      user.calendars.push(r);
-      schedule.addToCalendar(course,user);
+          gCal.getCalendarList(function(rr) {
+            user.calendars = rr.items; 
+            //$scope.$apply();
+          });//user.calendars.push(r);
+          schedule.addToCalendar(course,user);
     });
     return;
-  }
+  }*/
   calendar_event = gCal.createEvent(calendarId,
-                                    course.semester,
+                                    course.department + course.number,
                                     course.name,
-                                    course.description,
-                                    course.loc,
-                                    course.start,
-                                    course.end,
+                                    course.location,
+                                    getStart(course.time),
+                                    getEnd(course.time),
                                     course.days);
   // TODO: Handle case of multiple calendar events per class
-  gCal.calendarEventRequest(calendar_event);
-  schedule.refreshCalendar(user);
+  gCal.calendarEventRequest(calendar_event, function(){
+    schedule.refreshCalendar(user);
+  });
 }
 
 /*
@@ -164,9 +174,9 @@ schedule.addToCalendar = function(course, user) {
 */
 schedule.refreshCalendar = function(user, calendarIds) {
   //TODO: remember why the fuck i getEmail(sch.refCal)...it takes no args...back to user.email for now...
-  calendarIds = calendarIds || [user.email];
+  //calendarIds = calendarIds || [user.email];
       
-  cal_string = 'https://www.google.com/calendar/embed?&showTitle=0&showNav=0&showPrint=0&showCalendars=0&showTz=0&mode=WEEK&ctz=America%2FNew_York&src=' + calendarIds.join('&src=');
+  cal_string = 'https://www.google.com/calendar/embed?&showTitle=0&showNav=0&showPrint=0&showCalendars=0&showTz=0&mode=WEEK&ctz=America%2FNew_York&src=' + user.email;// calendarIds.join('&src=');
   iframe = document.getElementById('cal');
   iframe.src = cal_string;
 };
@@ -213,3 +223,33 @@ schedule.events.AddToCalendarButton = function(user, degreePlan, semester, cours
       semester, user);
   else schedule.addToCalendar(course, user);
 }
+
+getStart = function(timestr) {
+  // FOR NOW, ARBITARY DAY FOR START TIME
+  str = timestr.split(' ')[0];
+  hr = parseInt(str.split(':')[0]);
+  
+  min = str.split(':')[1];
+  min = parseInt(min[0]+min[1]);
+  if (str.search('PM')>0 && hr!=12) hr+=12;
+  if (hr < 10) hr = '0' + hr;
+  if (min < 10) min = '0' + min;
+  time = hr + ':' + min + ':00';
+  return "2014-03-01T" + time;
+  
+}
+getEnd = function(timestr) {
+  // FOR NOW, ARBITARY DAY FOR START TIME
+  str = timestr.split(' ')[2];
+  hr = parseInt(str.split(':')[0]);
+  
+  min = str.split(':')[1];
+  min = parseInt(min[0]+min[1]);
+  if (str.search('PM')>0 && hr!=12) hr+=12;
+  if (hr < 10) hr = '0' + hr;
+  if (min < 10) min = '0' + min;
+  time = hr + ':' + min + ':00';
+  return "2014-03-01T" + time;
+  
+}  
+

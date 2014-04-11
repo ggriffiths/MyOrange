@@ -82,10 +82,27 @@ exports.listCatalogCourses = function(req, res) {
   });
 }
 
- 
+exports.listDepartments = function(req, res) {
+  Course.find(function(err, courses) {
+    depts = []
+    for (var i in courses) {
+      depts.push(courses[i].department);
+    }
+    res.send(depts.filter(function(value, index, self) { 
+        return self.indexOf(value) === index;
+    }));
+  });
+}
+
 // Search for a specific course
 exports.searchCourses = function(req, res) {
     Course.find({department: req.params.department,number: req.params.number}, function(error, courses) {
+      res.send(courses);
+    });
+}
+// Search for courses by department only
+exports.searchCoursesByDept = function(req, res) {
+    Course.find({department: req.params.department}, function(error, courses) {
       res.send(courses);
     });
 }

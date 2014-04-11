@@ -40,7 +40,6 @@ gCal.createCalendar = function(name, callback) {
   createEvent - creates an event for a class to be passed to the
   GCal API (get ready for a shitload of args)
   {string} calendarId - calendar to add event to
-  {string} semester - TODO: delete this, unnecessary
   {string} summary - event title, use course title
   {string} description - event description, use course description
   {string} loc - event location, use classroom
@@ -50,7 +49,6 @@ gCal.createCalendar = function(name, callback) {
   returns: {object} calendar_event to use in event insert request body
 */
 gCal.createEvent = function(calendarId,
-                            semester,
                             summary,
                             description,
                             loc,
@@ -73,6 +71,7 @@ gCal.createEvent = function(calendarId,
     },
     "recurrence": [gCal.getRecurrence(repeat)],
   };
+  console.log(calendar_event);
   return calendar_event;
 };
 
@@ -85,7 +84,7 @@ gCal.createEvent = function(calendarId,
 gCal.calendarEventRequest = function(request_body, callback) {
   var request = gapi.client.request({
     'path':'/calendar/v3/calendars/' +
-           request_body.calendarId + '/events',
+           request_body.calendarId.replace('@','%40') + '/events',
     'method': 'POST',
     'body': JSON.stringify(request_body)
     //TODO: ^ Check if JSON.stringify is actually necessary

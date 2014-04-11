@@ -55,10 +55,10 @@
                 class='btn btn-primary btn-lg'>
           Add Class
         </button>
-        <button ng-click='degreePlan = true; events.AddPanel(1);'
+        <!--button ng-click='degreePlan = true; events.AddPanel(1);'
                 class='btn btn-primary btn-lg'>
           Add Classes from Degree Plan
-        </button>
+        </button-->
         <!-- TODO: implement this
         <button onclick=';' class='btn btn-primary btn-lg'>
           Remove Class
@@ -71,14 +71,17 @@
         <div id='semester'>
           <b>Semester:</b>
           <br>
-          <select ng-model="data.semester" ng-options="v as k for (k,v) in classes"></select>
+          <select>
+            <option value='Fall 2014'>Fall 2014</option>
+          </select>
           <br>
         </div>
         <div id='prefix'>
           <b>Course Subject:</b>
           <br>
-          <select ng-model="data.prefix"
-                  ng-options="v as k for (k,v) in data.semester">
+          <select ng-model="data.dept"
+                  ng-options="dept for dept in data.departments"
+                  ng-change="data.clearCourse()">
           </select>
           <br>
         </div>
@@ -86,12 +89,19 @@
           <b>Course:</b>
           <br> 
           <select ng-model="data.course"
-                  ng-options="v as k for (k,v) in data.prefix"></select>
+                  ng-options="course.number for course in getCoursesByDept()"></select>
           <br>
         </div>
         <!-- TODO: implement
                 button id='preview'
                 class='btn btn-primary btn-lg'>Preview Calendar</button-->
+        <div id='course-info' ng-if='data.course.name'>
+          <h3>{{data.course.name}}</h3>
+          <p>{{data.course.department}} {{data.course.number}}</p>
+          <p>{{data.course.location}}</p>
+          <p>{{data.course.days}} {{data.course.time}}</p>
+          <p>Instructor: {{data.course.instructor}}</p>
+        </div>
         <button id='addClassButton'
 	        style='margin-top:25px;'
                 class='btn btn-primary btn-lg'
@@ -101,19 +111,15 @@
 		onclick='schedule.events.CancelButton();'
 		class='btn btn-small'>Cancel</button>
       </div>
-      <div ng-controller='CalendarCtrl'>
+      <!--div ng-controller='CalendarCtrl'>
         <b>Toggle Calendars</b><br>
-        <!--select id='calendarSelect'
-                ng-model='calendar'
-                ng-click='refreshCalendar(calendar)'
-                ng-options='k for (k,v) in calendars'></select-->
         <div ng-repeat='calendar in user.calendars'>
            <input type='checkbox'
                   value='{{calendar.id}}'
-                  ng-click='refreshCalendar(user, getSelected())'
+                  ng-change='refreshCalendar(user, getSelected())'
                   ng-model='calendar.selected'>{{calendar.summary}}</input>
         </div>
-      </div>
+      </div-->
 
     </div>
   </div>

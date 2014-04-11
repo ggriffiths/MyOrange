@@ -29,6 +29,7 @@ var api = require('./api.js');
 
 // Searching for specific course or user
 app.get('/api/searchCourses/:department/:number', api.searchCourses);
+app.get('/api/searchCoursesByDept/:department', api.searchCoursesByDept);
 app.get('/api/searchCourses/:number', api.searchCourses);
 app.get('/api/searchUsers/:major?*/:year?*', api.searchCourses);
 app.get('/api/findUser/:email', api.findUser);
@@ -37,7 +38,7 @@ app.get('/api/findUser/:email', api.findUser);
 app.get('/api/getUsers', api.listUsers);
 app.get('/api/getCourses', api.listCourses);
 app.get('/api/getCatalogCourses', api.listCatalogCourses);
-
+app.get('/api/getDeptList', api.listDepartments);
 // Login/Register calls
 app.post('/api/login', api.login);
 app.post('/api/register', api.register);

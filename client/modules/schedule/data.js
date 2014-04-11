@@ -1,7 +1,6 @@
 /*
   scheduledata.js - contains basic class data
   Don't document - will be deprecated.
-  TODO: replace this with class data stored in database
 */
 
 scheduledata = {}
