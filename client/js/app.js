@@ -46,7 +46,7 @@ function register(){
 
   if(document.getElementById("passwordRegister").value==document.getElementById("passwordRegister2").value){
     var formData = {
-      displayName:document.getElementById("passwordRegister").value,
+      displayName:document.getElementById("displayNameRegister").value,
       email:document.getElementById("emailRegister").value,
       major:document.getElementById("majorRegister").value,
       year:document.getElementById("graduationRegister").value,
