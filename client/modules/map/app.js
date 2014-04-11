@@ -1,8 +1,10 @@
+//Global variables
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 var dayOfWeek;
 
+//Initialize the map
 function initialize() 
 {
   directionsDisplay = new google.maps.DirectionsRenderer();
@@ -17,24 +19,19 @@ function initialize()
   directionsDisplay.setMap(map);
 }
 
+//Calculate the route depending on the day of the week chosen
 function calcRoute() 
 {
   dayOfWeek = document.getElementById('Day').value;
-  var start = new google.maps.LatLng(43.036809, -76.129461);
+
+  //Create a start and end point with Shaw and Ernie as the locations
+  var start = new google.maps.LatLng(43.036754, -76.129495);
   var end = new google.maps.LatLng(43.039699, -76.129692);
+
+  //Check the day of the week value to know the other buildings to use as waypoints
   if (dayOfWeek == "Monday" || dayOfWeek == "Wednesday")
   {
-    var waypts = [];
-    var checkboxArray = document.getElementById('waypoints');
-    for (var i = 0; i < checkboxArray.length; i++) 
-    {
-      if (checkboxArray.options[i].selected == true) 
-      {
-        waypts.push({
-            location:checkboxArray[i].value,
-            stopover:true});
-      }
-    }
+    // Create the request for the map
     var request = 
     {
         origin: start,
@@ -49,67 +46,44 @@ function calcRoute()
   }
   else if(dayOfWeek == "Tuesday" || dayOfWeek == "Thursday")
   {
-    var waypts = [];
-    var checkboxArray = document.getElementById('waypoints');
-    for (var i = 0; i < checkboxArray.length; i++) 
-    {
-      if (checkboxArray.options[i].selected == true) 
-      {
-        waypts.push({
-            location:checkboxArray[i].value,
-            stopover:true});
-      }
-    }
     var request = 
     {
         origin: start,
         destination: end,
         waypoints: [
-        { location:new google.maps.LatLng(43.037676, -76.132604), stopover:true},
+        { location:new google.maps.LatLng(43.036790, -76.132390), stopover:true},
         { location:new google.maps.LatLng(43.037735, -76.130614), stopover:true},
         { location:new google.maps.LatLng(43.037052, -76.134686), stopover:true},
-        { location:new google.maps.LatLng(43.036586, -76.133988), stopover:true}, ],
+        { location:new google.maps.LatLng(43.038233, -76.134530), stopover:true}, ],
         optimizeWaypoints: false,
         travelMode: google.maps.TravelMode.WALKING
     };
   }
   else
   {
-    var waypts = [];
-    var checkboxArray = document.getElementById('waypoints');
-    for (var i = 0; i < checkboxArray.length; i++) 
-    {
-      if (checkboxArray.options[i].selected == true) 
-      {
-        waypts.push({
-            location:checkboxArray[i].value,
-            stopover:true});
-      }
-    }
     var request = 
     {
         origin: start,
         destination: end,
         waypoints: [
-        { location:new google.maps.LatLng(43.037676, -76.132604), stopover:true}, ],
+        { location:new google.maps.LatLng(43.035962, -76.134551), stopover:true}, ],
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.WALKING
     };
   }
 
-//Dont show directions
+//Dont show the directions
     directionsService.route(request, function(response, status) 
     {
       if (status == google.maps.DirectionsStatus.OK) 
       {
         directionsDisplay.setDirections(response);
-        //var route = response.routes[0];
-        //var summaryPanel = document.getElementById('directions_panel');
       }
     });
 
 /*
-//Show Directions
+//Show Directions, not currently needed but can be used if wanted
+
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
@@ -130,4 +104,6 @@ function calcRoute()
     });
 */
 }
+
+// Event handler for when the page loads
 google.maps.event.addDomListener(window, 'load', initialize);
