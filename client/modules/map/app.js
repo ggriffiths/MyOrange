@@ -15,16 +15,15 @@ function initialize()
   };
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.setMap(map);
-  calcRoute();
 }
 
 function calcRoute() 
 {
   dayOfWeek = document.getElementById('Day').value;
+  var start = new google.maps.LatLng(43.036809, -76.129461);
+  var end = new google.maps.LatLng(43.039699, -76.129692);
   if (dayOfWeek == "Monday" || dayOfWeek == "Wednesday")
   {
-    var start = new google.maps.LatLng(43.038609, -76.134514);
-    var end = new google.maps.LatLng(43.036637, -76.133173);
     var waypts = [];
     var checkboxArray = document.getElementById('waypoints');
     for (var i = 0; i < checkboxArray.length; i++) 
@@ -41,16 +40,15 @@ function calcRoute()
         origin: start,
         destination: end,
         waypoints: [
+        { location:new google.maps.LatLng(43.037676, -76.132604), stopover:true},
         { location:new google.maps.LatLng(43.036586, -76.133988), stopover:true},
-        { location:new google.maps.LatLng(43.038233, -76.134530), stopover:true} ],
+        { location:new google.maps.LatLng(43.038640, -76.132030), stopover:true} ],
         optimizeWaypoints: false,
         travelMode: google.maps.TravelMode.WALKING
     };
   }
   else if(dayOfWeek == "Tuesday" || dayOfWeek == "Thursday")
   {
-    var start = new google.maps.LatLng(43.037676, -76.132604);
-    var end = new google.maps.LatLng(43.037735, -76.130614);
     var waypts = [];
     var checkboxArray = document.getElementById('waypoints');
     for (var i = 0; i < checkboxArray.length; i++) 
@@ -67,17 +65,16 @@ function calcRoute()
         origin: start,
         destination: end,
         waypoints: [
+        { location:new google.maps.LatLng(43.037676, -76.132604), stopover:true},
+        { location:new google.maps.LatLng(43.037735, -76.130614), stopover:true},
         { location:new google.maps.LatLng(43.037052, -76.134686), stopover:true},
-        { location:new google.maps.LatLng(43.036586, -76.133988), stopover:true},
-        { location:new google.maps.LatLng(43.036809, -76.129461), stopover:true} ],
+        { location:new google.maps.LatLng(43.036586, -76.133988), stopover:true}, ],
         optimizeWaypoints: false,
         travelMode: google.maps.TravelMode.WALKING
     };
   }
   else
   {
-    var start = new google.maps.LatLng(43.037676, -76.132604);
-    var end = new google.maps.LatLng(43.036809, -76.129461);
     var waypts = [];
     var checkboxArray = document.getElementById('waypoints');
     for (var i = 0; i < checkboxArray.length; i++) 
@@ -93,7 +90,8 @@ function calcRoute()
     {
         origin: start,
         destination: end,
-        waypoints: [],
+        waypoints: [
+        { location:new google.maps.LatLng(43.037676, -76.132604), stopover:true}, ],
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.WALKING
     };
