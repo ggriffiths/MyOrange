@@ -32,10 +32,10 @@ function editYear()
 function editPicture()
 {
 	var newYear = prompt("Please a new picture url.","");
-	if (newYear != null)
+	if (newPicture != null)
 	{
-		document.getElementById("year").innerHTML = "<h3 style='color:red;line-height:75%'>" +  newYear + "</h3>";
-		writeCookie('year', newYear, 3);
+		document.getElementById("picture").src = newPicture;
+		writeCookie('picture', newPicture, 3);
 	}
 }
 
@@ -44,6 +44,7 @@ function displayUserData(){
 	var displayName = "";
 	var major = "";
 	var year = "";
+	var picture = "";
 	var urlStr = 'http://localhost:8000/api/findUser/'+readCookie('currentUser');
 	$.ajax({ 
 	    type: 'GET', 
@@ -53,14 +54,17 @@ function displayUserData(){
 	    	displayName = data.displayName;
 			major = data.major;
 			year = data.year;
+			picture = data.picture;
 
 			writeCookie('year', year, 3);
 			writeCookie('major', major, 3);
 			writeCookie('displayName', displayName, 3);
+			writeCookie('picture', picture, 3);
 
 			document.getElementById("name").innerHTML = "<h1>" +  displayName + "</h1>";
 			document.getElementById("major").innerHTML = "<h3>" +  major + "</h3>";
 			document.getElementById("year").innerHTML = "<h3>" +  year + "</h3>";
+			document.getElementById("picture").src = picture;
 	    }
 	});
 

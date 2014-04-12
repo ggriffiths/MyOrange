@@ -18,7 +18,7 @@ exports.register = function(req, res) {
           major: req.body.major, 
           year: req.body.year, 
           password: req.body.password,
-          courses: req.body.courses
+          courses: req.body.courses,
         }).save();
         res.send("success");
       }
@@ -33,7 +33,8 @@ exports.updateUser = function(req, res) {
     User.update({ 'email': req.body.email }, {
       displayName: req.body.displayName,
       major: req.body.major,
-      year: req.body.year
+      year: req.body.year,
+	  picture: req.body.picture
     }, function(err){
       if(err) res.json(err);
       else res.send("success");
