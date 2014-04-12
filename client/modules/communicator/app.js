@@ -54,7 +54,7 @@ function displayUserData(){
 	var displayName = "";
 	var major = "";
 	var year = "";
-	var picture = "";
+	var picture = "http://upload.wikimedia.org/wikipedia/en/thumb/3/30/OttotheOrange.svg/248px-OttotheOrange.svg.png";
 	//var courses = "";
 	var urlStr = 'http://localhost:8000/api/findUser/'+readCookie('currentUser');
 	$.ajax({ 
