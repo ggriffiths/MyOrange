@@ -19,6 +19,7 @@ exports.register = function(req, res) {
           year: req.body.year, 
           password: req.body.password,
           courses: req.body.courses,
+		  picture: req.body.picture
         }).save();
         res.send("success");
       }
