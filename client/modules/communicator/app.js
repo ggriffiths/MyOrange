@@ -39,12 +39,23 @@ function editPicture()
 	}
 }
 
+/*function editCourses()
+{
+	var newPicture = prompt("Add or remove any courses by title (i.e. CIS 252)","courses");
+	if (newPicture != null)
+	{
+		document.getElementById("courses").src = newCourses;
+		writeCookie('courses', newCourses, 3);
+	}
+}*/
+
 function displayUserData(){
 
 	var displayName = "";
 	var major = "";
 	var year = "";
 	var picture = "";
+	//var courses = "";
 	var urlStr = 'http://localhost:8000/api/findUser/'+readCookie('currentUser');
 	$.ajax({ 
 	    type: 'GET', 
@@ -55,16 +66,19 @@ function displayUserData(){
 			major = data.major;
 			year = data.year;
 			picture = data.picture;
+			//courses = data.courses;
 
 			writeCookie('year', year, 3);
 			writeCookie('major', major, 3);
 			writeCookie('displayName', displayName, 3);
 			writeCookie('picture', picture, 3);
+			//writeCookie('courses', courses, 3);
 
 			document.getElementById("name").innerHTML = "<h1>" +  displayName + "</h1>";
 			document.getElementById("major").innerHTML = "<h3>" +  major + "</h3>";
 			document.getElementById("year").innerHTML = "<h3>" +  year + "</h3>";
 			document.getElementById("picture").src = picture;
+			//document.getElementById("courses").innerHTML = 
 	    }
 	});
 
