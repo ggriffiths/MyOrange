@@ -31,7 +31,7 @@ function editYear()
 
 function editPicture()
 {
-	var newYear = prompt("Please a new picture url.","");
+	var newPicture = prompt("Please a new picture url.","");
 	if (newPicture != null)
 	{
 		document.getElementById("picture").src = newPicture;
