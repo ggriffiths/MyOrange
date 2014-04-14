@@ -21,6 +21,11 @@ angular-seed
 
 
 ##Project Setup Instructions
-1. Download and NodeJS: http://nodejs.org/download/ <br>
-2. <br>
-3. <br>
+1. Download+Install nodejs: http://nodejs.org/download/ <br>
+2. Download+Install git: http://git-scm.com/downloads<br>
+3. Open git bash <br>
+4. Clone myorange.git with the following command: "git clone http://www.github.com/ggriffiths/myorange.git"
+5. While in myorange directory, install node modules with the following command: "npm install"
+6. While in myorange directory, start nodejs server: "node server/web-server.js"
+7. Navigate to myorange app via web browser: http://localhost:8000 
+
