@@ -20,9 +20,9 @@ Kevin (kdaziz)
 <b>Extra APIs</b><br>
 1. Google Maps API <br>
 2. Google Calendars API<br>
-4. Bootstrap <br>
-5. Fontawesome<br>
-6. AngularUI <br>
+3. Bootstrap <br>
+4. Fontawesome<br>
+5. AngularUI <br>
 
 
 
