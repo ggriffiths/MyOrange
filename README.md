@@ -20,7 +20,7 @@ Mongoose
 angular-seed
 
 
-##Installation Instructions
-1. <br>
-###2.
-###3.
+##Project Setup Instructions
+1. Download and NodeJS: http://nodejs.org/download/ <br>
+2. <br>
+3. <br>
