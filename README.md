@@ -1,4 +1,4 @@
-#Project Information
+#I. Project Information
 ##Description:
 Project for Syracuse University's CIS454 - Software Implementation course. The purpose of the web application is to enhance student life with a schedule, map, degree planner, and profile system.
 
@@ -21,7 +21,7 @@ Mongoose
 angular-seed
 
 
-# Tutorials
+#II. Tutorials
 ##Project Setup Instructions
 1. Download+Install nodejs: http://nodejs.org/download/ <br>
 2. Download+Install git: http://git-scm.com/downloads<br>
