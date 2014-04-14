@@ -17,7 +17,7 @@ Kevin (kdaziz)
 4. NodeJS <br>
 5. Mongoose <br><br>
 
-<b>Extra APIs<b><br>
+<b>Extra APIs</b><br>
 1. Google Maps API <br>
 2. Google Calendars API<br>
 4. Bootstrap <br>
