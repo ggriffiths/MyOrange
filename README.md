@@ -33,3 +33,7 @@ angular-seed
 
 ## How to use MyOrange
 ### Navigation
+### Schedule
+### Map
+### Communicator
+### Degree Plan
