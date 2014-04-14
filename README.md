@@ -10,12 +10,21 @@ Grant (ggriffiths) <br>
 Kevin (kdaziz)
 
 ##Project Stack:
-MongoDB <br>
-ExpressJS <br>
-AngularJS <br>
-NodeJS <br>
-AngularUI <br>
-Mongoose 
+<b> Main Stack </b><br>
+1. MongoDB <br>
+2. ExpressJS <br>
+3. AngularJS <br>
+4. NodeJS <br>
+5. Mongoose <br><br>
+
+<b>Extra APIs<b><br>
+1. Google Maps API <br>
+2. Google Calendars API<br>
+4. Bootstrap <br>
+5. Fontawesome<br>
+6. AngularUI <br>
+
+
 
 ##Project Seed:
 angular-seed
