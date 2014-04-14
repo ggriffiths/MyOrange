@@ -24,12 +24,6 @@ Kevin (kdaziz)
 4. Fontawesome<br>
 5. AngularUI <br>
 
-
-
-##Project Seed:
-angular-seed
-
-
 #II. Tutorials
 ##Project Setup Instructions
 1. Download+Install nodejs: http://nodejs.org/download/ <br>
