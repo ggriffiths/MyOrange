@@ -1,15 +1,15 @@
 #I. Project Information
-##Description:
+##A. Description:
 Project for Syracuse University's CIS454 - Software Implementation course. The purpose of the web application is to enhance student life with a schedule, map, degree planner, and profile system.
 
-##Team Members:
+##B. Team Members:
 Caely (cemart01)<br>
 Daniel (dbnr5)<br>
 Derrick (drbaker92)<br>
 Grant (ggriffiths) <br>
 Kevin (kdaziz)
 
-##Project Stack:
+##C. Project Stack:
 <b> Main Stack </b><br>
 1. MongoDB <br>
 2. ExpressJS <br>
@@ -25,7 +25,7 @@ Kevin (kdaziz)
 5. AngularUI <br>
 
 #II. Tutorials
-##Project Setup Instructions
+##A. Project Setup Instructions
 1. Download+Install nodejs: http://nodejs.org/download/ <br>
 2. Download+Install git: http://git-scm.com/downloads<br>
 3. Open git bash <br>
@@ -34,7 +34,7 @@ Kevin (kdaziz)
 6. While in myorange directory, start nodejs server: "node server/web-server.js"
 7. Navigate to myorange app via web browser: http://localhost:8000 
 
-## How to use MyOrange
+##B. How to use MyOrange
 <b>1. Navigation</b> - The navigation system allows you access the 4 subparts below. Open reaching our homepage, users are required to either make a new account, or login to an existing one. They can also logout at any time.<br>
 <b>2. Schedule</b> - To use the schedule, you must first click the authorize button to link your Google account. After doing this, you can click "add class" and select which course you wish to add. This course will then be added to your calendar.<br>
 <b>3. Map</b> - To use the map, simply click the day of week you wish to view, and click submit. To view a specific path, click on the starting and ending location and click submit.<br>
