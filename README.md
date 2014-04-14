@@ -21,6 +21,6 @@ angular-seed
 
 
 ##Installation Instructions
-1.
-2.
-3.
+###1.
+###2.
+###3.
