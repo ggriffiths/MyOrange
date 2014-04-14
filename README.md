@@ -20,4 +20,7 @@ Mongoose
 angular-seed
 
 
-
+##Installation Instructions
+1.
+2.
+3.
