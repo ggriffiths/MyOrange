@@ -32,8 +32,8 @@ angular-seed
 7. Navigate to myorange app via web browser: http://localhost:8000 
 
 ## How to use MyOrange
-### Navigation
-### Schedule
-### Map
-### Communicator
-### Degree Plan
+<b>1. Navigation</b> - The navigation system allows you access the 4 subparts below. Open reaching our homepage, users are required to either make a new account, or login to an existing one. They can also logout at any time.
+<b>2. Schedule</b> - To use the schedule, you must first click the authorize button to link your Google account. After doing this, you can click "add class" and select which course you wish to add. This course will then be added to your calendar.
+<b>3. Map</b> - To use the map, simply click the day of week you wish to view, and click submit. To view a specific path, click on the starting and ending location and click submit.
+<b>4. Communicator</b> - The communicator allows users to alter their major, year, picture, and graduation year. To change this, you can click the edit box for each.
+<b>5. Degree Plan</b> - The degree planner allows students to drag and drop courses into their planner for each semester of their four years at SU. Users can also select a major and the courses can be automatically populated for you.
