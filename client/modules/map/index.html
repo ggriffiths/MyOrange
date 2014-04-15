@@ -42,19 +42,67 @@
     
     <!-- Create the side panel with all the buildings on campus as starting and ending points -->
 
-    <div id="control_panel" style="float:right;width:20%;text-align:left;padding-top:20px">
+    <div id="control_panel" style="float:right;width:25%;text-align:left;padding-top:20px">
     <div id="toolbar">
-    <b>Day:</b>
+  <b>Day:</b>
     <select id="Day">
-<option value="Monday">Monday</option>
+      <option value="null"></option>
+      <option value="Monday">Monday</option>
       <option value="Tuesday">Tuesday</option>
       <option value="Wednesday">Wednesday</option>
       <option value="Thursday">Thursday</option>
       <option value="Friday">Friday</option>
     </select>
-
-    <!-- Just the list of locations of buildings for future needs
-
+    <br>
+    <br>
+  <b>OR</b> 
+    <br>
+    <br> 
+  <b>Start:</b>
+    <select id="start">
+      <option value="43.036664, -76.134836">Archbold Gym</option>
+      <option value="43.036790, -76.132390">Art Building</option>
+      <option value="43.040197, -76.137052">Admissions Building (Crouse-Hinds)</option>
+      <option value="43.038153, -76.140281">BBB Hall</option>
+      <option value="43.039730, -76.132583">Bird Library</option>
+      <option value="43.041107, -76.129026">Booth Hall</option>
+      <option value="43.036637, -76.133173">Bowne Hall</option>
+      <option value="43.036586, -76.133988">Carnegie</option>
+      <option value="43.036747, -76.135582">Carrier Dome</option>
+      <option value="43.037374, -76.137255">College of Law</option>
+      <option value="43.038444, -76.136858">Crouse Hall</option>
+      <option value="43.034814, -76.131639">Day Hall (Flint Hall)</option>
+      <option value="43.040079, -76.128924">DellPlain Hall</option>
+      <option value="43.036931, -76.131864">DPS</option>
+      <option value="43.040997, -76.134782">Education Building</option>
+      <option value="43.039699, -76.129692">Ernie Hall</option>
+      <option value="43.039821, -76.132014">Faculty Center</option>
+      <option value="43.037343, -76.136563">Geology Building</option>
+      <option value="43.038609, -76.134514">Hall of Languages</option>
+      <option value="43.038233, -76.134530">HBC</option>
+      <option value="43.037656, -76.134895">Hendricks Chapel</option>
+      <option value="43.038248, -76.133377">Hinds Hall (ISchool)</option>
+      <option value="43.040871, -76.130614">Kimmel Hall</option>
+      <option value="43.034821, -76.138763">Lawrinson Hall</option>
+      <option value="43.037735, -76.130614">Life Science Building (SciTech)</option>
+      <option value="43.037676, -76.132604">Link Hall</option>
+      <option value="43.038640, -76.132030">Lyman Hall</option>
+      <option value="43.036684, -76.126623">Lyons Hall</option>
+      <option value="43.042126, -76.134917">Marshall Square Mall</option>
+      <option value="43.038033, -76.135861">Maxwell</option>
+      <option value="43.040021, -76.135609">Newhouse</option>
+      <option value="43.037052, -76.134686">Physics Building</option>
+      <option value="43.035543, -76.138736">Sadler Hall</option>
+      <option value="43.039919, -76.133736">Schine</option>
+      <option value="43.036809, -76.129461">Shaw Hall</option>
+      <option value="43.037648, -76.132009">Slocum Hall</option>
+      <option value="43.038354, -76.132696">Smith Hall</option>
+      <option value="43.044368, -76.131837">Washington Arms Hall</option>
+      <option value="43.039625, -76.130840">Watson Hall</option>
+      <option value="43.042224, -76.133897">Whitman School of Busniness</option>
+      <option value="43.034770, -76.129981">Women's Building</option>
+    </select>
+    <br>
     <b>End:</b>
     <select id="end">
       <option value="43.036664, -76.134836">Archbold Gym</option>
@@ -99,8 +147,6 @@
       <option value="43.042224, -76.133897">Whitman School of Busniness</option>
       <option value="43.034770, -76.129981">Women's Building</option>
     </select>
-  -->
-
     <br>
       <br>
       <input type="submit" onclick="calcRoute();" class="btn btn-primary btn-lg">

@@ -59,7 +59,7 @@ function calcRoute()
         travelMode: google.maps.TravelMode.WALKING
     };
   }
-  else
+  else if(dayOfWeek == "Friday")
   {
     var request = 
     {
@@ -67,6 +67,19 @@ function calcRoute()
         destination: end,
         waypoints: [
         { location:new google.maps.LatLng(43.035962, -76.134551), stopover:true}, ],
+        optimizeWaypoints: true,
+        travelMode: google.maps.TravelMode.WALKING
+    };
+  }
+  else if(dayOfWeek == "null")
+  {
+    start = document.getElementById('start').value;
+    end = document.getElementById('end').value;
+    var request = 
+    {
+        origin: start,
+        destination: end,
+        waypoints: [],
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.WALKING
     };
