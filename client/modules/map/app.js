@@ -19,7 +19,7 @@ function initialize()
   directionsDisplay.setMap(map);
 }
 
-//Calculate the route depending on the day of the week chosen
+//Calculate the route depending on the day of the week chosen or if the day is null calculate with two given buildings
 function calcRoute() 
 {
   dayOfWeek = document.getElementById('Day').value;
@@ -71,6 +71,8 @@ function calcRoute()
         travelMode: google.maps.TravelMode.WALKING
     };
   }
+  
+  // Day of the week is blank so use the current building options as the start and end values
   else if(dayOfWeek == "null")
   {
     start = document.getElementById('start').value;
