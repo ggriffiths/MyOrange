@@ -41,7 +41,7 @@ function editPicture()
 
 /*function addCourses()
 {
-	var newCourse = prompt("Add a courses by title (i.e. CIS 252)","courses");
+	var newCourse = prompt("Add a courses by title (i.e. CIS 252)","");
 	if (newCourse != null)
 	{
 		var newList = document.getElementById("courses");
@@ -50,7 +50,23 @@ function editPicture()
 		//newList.toString();
 		document.getElementById("courses").innerHTML = newList.toString();
 	}
-} */
+} 
+
+function removeCourse()
+{
+	var remCourse = prompt("Which course would you like to remove?","");
+	var theArray = document.getElementById("courses");
+	var i = 0;
+	
+	for (i=0; i<theArray.length; i++)
+	{
+		if (remCourse == theArray[i])
+			theArray.splice(i,1);
+	}
+	
+	writeCookie('courses', theArray, 3);
+	document.getElementById("courses").innerHTML = newList.toString();
+}*/
 
 function displayUserData(){
 
