@@ -35,7 +35,8 @@ exports.updateUser = function(req, res) {
       displayName: req.body.displayName,
       major: req.body.major,
       year: req.body.year,
-	  picture: req.body.picture
+	  picture: req.body.picture,
+	  courses: req.body.courses
     }, function(err){
       if(err) res.json(err);
       else res.send("success");

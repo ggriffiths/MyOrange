@@ -82,7 +82,8 @@ function updateUser(){
     email:readCookie('currentUser'),
     major:readCookie('major'),
     year:readCookie('year'),
-    picture:readCookie('picture')
+    picture:readCookie('picture'),
+	courses:readCookie('courses')
   }; 
 
   $.ajax({
