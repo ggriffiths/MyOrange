@@ -47,6 +47,7 @@ function addCourses()
 		var newList = document.getElementById("courses");
 		newList[newList.length] = newCourse;
 		writeCookie('courses', newList, 3);
+		newList.toString();
 		document.getElementById("courses").innerHTML = newList;
 	}
 }
