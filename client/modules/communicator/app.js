@@ -1,4 +1,4 @@
-
+// change the display name
 function editName()
 {
    var newName = prompt("Please enter your new name.","");
@@ -9,6 +9,7 @@ function editName()
    }
 }
 
+// change the major
 function editMajor()
 {
 	var newMajor = prompt("Please enter your new major.","");
@@ -19,6 +20,7 @@ function editMajor()
 	}
 }
 
+// change the year
 function editYear()
 {
 	var newYear = prompt("Please enter your new year.","");
@@ -29,6 +31,7 @@ function editYear()
 	}
 }
 
+// change the picture
 function editPicture()
 {
 	var newPicture = prompt("Please a new picture url.","");
@@ -39,6 +42,7 @@ function editPicture()
 	}
 }
 
+// add a course the the course array
 /*function addCourses()
 {
 	var newCourse = prompt("Add a courses by title (i.e. CIS 252)","");
@@ -52,6 +56,7 @@ function editPicture()
 	}
 } 
 
+// remove a course from the course array
 function removeCourse()
 {
 	var remCourse = prompt("Which course would you like to remove?","");
@@ -68,6 +73,7 @@ function removeCourse()
 	document.getElementById("courses").innerHTML = newList.toString();
 }*/
 
+// pulls the user data from the database to populate the fields
 function displayUserData(){
 
 	var displayName = "";

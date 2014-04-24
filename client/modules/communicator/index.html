@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+<!-- style for the text color effects /-->
 <style>
   h1 {
     color: darkorange;
@@ -21,17 +22,21 @@
 <table width="50%"  border="0">
    <tr valign = "top">
      <td style = "width:250px; text-align-top">
+		<!-- displays the picture if the URL is valid, or displays the text "Your picture here" /-->
        <img id="picture" src="http://upload.wikimedia.org/wikipedia/en/thumb/3/30/OttotheOrange.svg/248px-OttotheOrange.svg.png" alt="Your picture here" width="300">
 	   <a onClick="editPicture();updateUser()" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
      </td>
 
      <td style = "width:100px;float:left;padding-left:75px">
+		<!-- Shows the display name /-->
        <div id = "name"><h1>Name</h1></div>
        <a onClick="editName();updateUser()" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
        <br/><br/>
+	   <!-- Shows the major /-->
        <div id = "major"><h3>Major</h3></div>
        <a onClick="editMajor();updateUser();" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
-       <br /><br/>  
+       <br /><br/> 
+		<!-- Shows the year /-->
        <div id = "year"><h3>Year</h3></div>
        <a onClick="editYear();updateUser();" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Edit</a></a>
        <br />
@@ -41,6 +46,7 @@
      </td>
    </tr>  
 </table>
+<!-- Displays the title "Courses:" and the list of courses in the array, with the ability to add or remove elements /-->
 <!-- <div><h4>Courses:</h4></div>
 <div id = "courses"><h4>courses</h4></div>
 <a onClick="addCourses();updateUser();" role="button" class="ruleBtn btn-sm btn-primary" data-toggle="modal">Add</a></a>
