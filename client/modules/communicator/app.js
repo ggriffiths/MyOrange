@@ -45,10 +45,10 @@ function addCourses()
 	if (newCourse != null)
 	{
 		var newList = document.getElementById("courses");
-		newList[newList.length] = newCourse;
+		newList.push(newCourse);
 		writeCookie('courses', newList, 3);
-		newList.toString();
-		document.getElementById("courses").innerHTML = newList;
+		//newList.toString();
+		document.getElementById("courses").innerHTML = newList.toString();
 	}
 }
 
